@@ -57,6 +57,7 @@ section{
 }
 
 article{
+    vertical-align:top;
     display: inline-block;
     width: 240px;
     border: 1px solid lightgray;
