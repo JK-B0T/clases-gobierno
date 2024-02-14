@@ -1,3 +1,54 @@
-header img {
-    display: inline;
+* {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: orange;
+}
+a:hover {
+    color: white;
+}
+
+/*---Cabecera y barra de navegación---*/
+header * {
+    display: inline-block;
+    margin: auto 0;
+}
+header {
+    background-color: #313B44;
+    border-bottom: 6px solid black;
+    font-family: Courier Arial;
+    color: white;
+    padding: 16px;
+    background-image: url("../imgs/logo.png");
+    background-repeat: no-repeat;
+    background-position: 25px center;
+}
+h1{
+    padding-left: 80px;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 0 100px 20px 100px;
+    text-align: center;
+}
+nav ul{
+    list-style: none;
+    padding-left: 0;
+}
+
+nav {
+    padding: 16px 48px;
+    background-image: url("../imgs/red015.jpg");
+}
+
+/*---Cuerpo---*/
+
+/*---Pie---*/
+footer{
+    background-color: #313B44;
+    border-top: 6px solid black;
+    height: 100px;;
 }
