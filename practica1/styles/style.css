@@ -10,6 +10,11 @@ a:hover {
     color: white;
 }
 
+body{
+    text-align: center;
+    background-image: url(../imgs/old_map.png);
+}
+
 /*---Cabecera y barra de navegación---*/
 header * {
     display: inline-block;
@@ -25,7 +30,7 @@ header {
 }
 h1{
     padding-left: 80px;
-    font-family: "Courier New" Arial;
+    font-family: Courier , Arial;
     color: white;
 }
 
@@ -58,11 +63,17 @@ article{
     line-height: 1.8em;
     margin: 30px;
 }
+article header{
+    background-color: white;
+    border-bottom: 0;
+    padding: 0;
+    background-image: none;
+    margin: 5px 5px 22px;
+}
 
 article img {
     height: auto;
     width: 230px;
-    margin: 5px 5px 22px;
 }
 
 /*---Pie---*/
