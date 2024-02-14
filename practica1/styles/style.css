@@ -11,7 +11,6 @@ a:hover {
 }
 
 body{
-    text-align: center;
     background-image: url(../imgs/old_map.png);
 }
 
@@ -38,14 +37,17 @@ nav ul li {
     display: inline-block;
     margin: 0 100px 20px 100px;
     text-align: center;
+    font-family: Courier , Arial;
+    color: silver;
+    font-size: 1.4em;
 }
 nav ul{
     list-style: none;
     padding-left: 0;
+    padding-top: 8px;
 }
 
 nav {
-    padding: 16px 48px;
     background-image: url(../imgs/red015.jpg);
 }
 
