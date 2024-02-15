@@ -2,16 +2,25 @@
     margin: 0;
 }
 
+html {
+    background-color: white;
+}
+
 a {
     text-decoration: none;
-    color: orange;
+    color: white;
 }
 a:hover {
-    color: white;
+    color: orange;
 }
 
 body{
-    background-image: url(../imgs/old_map.png);
+    background-image: linear-gradient(rgba(227,76,38,1) 0%, rgba(240,101,41,0) 90%); 
+}
+
+.page {
+    width: 940px;
+    padding: 3em 6em;
 }
 
 /*---Cabecera y barra de navegación---*/
@@ -20,15 +29,16 @@ header * {
     margin: auto 0;
 }
 header {
-    background-color: #313B44;
+    background-image: linear-gradient(#0170B9, #27AADE);
     border-bottom: 6px solid black;
     padding: 16px;
-    background-image: url(../imgs/logo.png);
-    background-repeat: no-repeat;
+    /*background-image: url(../imgs/logo.png);*/
     background-position: 25px center;
 }
 h1{
-    padding-left: 80px;
+    display: inline-block;
+    padding-left: 20px;
+    vertical-align: text-bottom;
     font-family: Courier , Arial;
     color: white;
 }
@@ -48,19 +58,20 @@ nav ul{
 }
 
 nav {
-    background-image: url(../imgs/red015.jpg);
+    background-image: linear-gradient(rgba(213, 186, 50), rgba(225, 218, 62));
 }
 
 /*---Cuerpo---*/
 section{
-    background-image: url(../imgs/lgrey008.jpg);
+    background-color: white;
 }
 
 article{
     vertical-align:top;
     display: inline-block;
     width: 240px;
-    border: 1px solid lightgray;
+    border-image: url(../recursos/movil.png) 27 / 36px 28px 18px 8px / 36px 28px 18px 8px
+    stretch;
     background-color: white;
     text-align: center;
     line-height: 1.8em;
@@ -84,4 +95,8 @@ footer{
     background-color: #313B44;
     border-top: 6px solid black;
     height: 50px;;
+}
+
+p {
+    border-image: url(../recursos/movil.png);
 }
