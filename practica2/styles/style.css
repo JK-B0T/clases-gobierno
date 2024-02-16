@@ -16,11 +16,13 @@ a:hover {
 
 body{
     background-image: linear-gradient(rgba(227,76,38,1) 0%, rgba(240,101,41,0) 90%); 
+    padding: 3em 6em;
 }
 
 .page {
     width: 940px;
-    padding: 3em 6em;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px gray;
 }
 
 /*---Cabecera y barra de navegación---*/
@@ -37,7 +39,7 @@ header {
 }
 h1{
     display: inline-block;
-    padding-left: 20px;
+    padding: 0 0 5px 20px;
     vertical-align: text-bottom;
     font-family: Courier , Arial;
     color: white;
@@ -64,14 +66,14 @@ nav {
 /*---Cuerpo---*/
 section{
     background-color: white;
+    padding: 60px 0;
 }
 
 article{
     vertical-align:top;
     display: inline-block;
     width: 240px;
-    border-image: url(../recursos/movil.png) 27 / 36px 28px 18px 8px / 36px 28px 18px 8px
-    stretch;
+    border-image: url(../recursos/movil.png) 65 20 / 65px 20px / 65px 20px stretch;
     background-color: white;
     text-align: center;
     line-height: 1.8em;
@@ -92,11 +94,13 @@ article img {
 
 /*---Pie---*/
 footer{
-    background-color: #313B44;
+    background-image: linear-gradient(to top, #0170B9, #27AADE);
+    color: white;
+    text-align: center;
     border-top: 6px solid black;
     height: 50px;;
 }
 
-p {
-    border-image: url(../recursos/movil.png);
+footer > p {
+    padding-top: 1.5%;
 }
