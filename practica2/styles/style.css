@@ -87,6 +87,9 @@ article header{
     background-image: none;
     margin: 5px 5px;
 }
+article img[src="./imgs/javascript.png"] {
+    background-image: radial-gradient(#ffffff 0%, #cecece 200%);
+}
 
 h2{
     text-shadow: 2px 2px 2px gray;
