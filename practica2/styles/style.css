@@ -36,6 +36,7 @@ header {
     padding: 16px;
     /*background-image: url(../imgs/logo.png);*/
     background-position: 25px center;
+    border-radius: 20px 20px 0 0;
 }
 h1{
     display: inline-block;
@@ -84,7 +85,11 @@ article header{
     border-bottom: 0;
     padding: 0;
     background-image: none;
-    margin: 5px 5px 22px;
+    margin: 5px 5px;
+}
+
+h2{
+    text-shadow: 2px 2px 2px gray;
 }
 
 article img {
@@ -99,6 +104,7 @@ footer{
     text-align: center;
     border-top: 6px solid black;
     height: 50px;;
+    border-radius: 0 0 20px 20px;
 }
 
 footer > p {
