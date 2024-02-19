@@ -92,6 +92,28 @@ article header{
 }
 article img[src="./imgs/javascript.png"] {
     background-image: radial-gradient(#ffffff 0%, #cecece 200%);
+} /*Efecto de artículos colgados por chinchetas*/
+.chincheta {
+    background-image: url(../recursos/chincheta.png);
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 35px;
+    height: 49px;
+}
+#artJS{
+    transform: rotate(2deg);
+}
+#artHTML{
+    transform: rotate(-2deg);
+}
+#artHTML .chincheta,
+#artJS .chincheta{
+    top: -80px;
+    left: 196px;
+}
+#artCSS .chincheta{
+    top: 272px;
+    left: 627px;
 }
 
 h2{ /*Texto principal de cada artículo, aquel que indica si es HTML, CSS3 o JavaScript.*/
