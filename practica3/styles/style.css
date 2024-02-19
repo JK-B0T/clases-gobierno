@@ -9,9 +9,13 @@ html {
 a {
     text-decoration: none;
     color: white;
+    text-shadow: 0px 0px 5px white;
+    transition-property: "text-shadow";
+    transition-duration: 0.5s;
 }
 a:hover {
     color: orange;
+    text-shadow: 2px 2px 0px red;
 }
 
 body{
@@ -112,7 +116,7 @@ article img[src="./imgs/javascript.png"] {
     left: 196px;
 }
 #artCSS .chincheta{
-    top: 272px;
+    top: 273px;
     left: 627px;
 }
 
