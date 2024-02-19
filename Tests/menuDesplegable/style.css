@@ -1,0 +1,17 @@
+nav>ul>li>ul{
+    font-size: 0.7em;
+    position: absolute;
+    z-index: 2;
+    list-style: none;
+    width: 100px;
+    text-align: center;
+    left: 50%;
+    top: 25px;
+    margin-left: 50%;
+    height: 0px;
+    overflow: hidden;
+    transition: height 0.4s linear;
+}
+nav li:hover ul{
+    height: 200px;
+}

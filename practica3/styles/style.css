@@ -1,9 +1,6 @@
 * {
     margin: 0;
-}
-
-html {
-    background-color: white;
+    padding: 0;
 }
 
 a {
@@ -19,7 +16,9 @@ a:hover {
 }
 
 body{
+    background-color: white;
     background-image: linear-gradient(rgba(227,76,38,1) 0%, rgba(240,101,41,0) 90%); 
+    background-repeat: no-repeat;
     padding: 3em 6em;
 }
 
@@ -51,6 +50,11 @@ h1{
     color: white;
 }
 
+
+nav {
+    background-image: linear-gradient(rgba(213, 186, 50), rgba(225, 218, 62));
+}
+
 /*Elementos de la barra de navegación*/
 nav ul li {
     display: inline-block;
@@ -65,10 +69,8 @@ nav ul{
     padding-left: 0;
     padding-top: 8px;
 }
+/*Elementos de sub menu*/
 
-nav {
-    background-image: linear-gradient(rgba(213, 186, 50), rgba(225, 218, 62));
-}
 
 /*---Cuerpo---*/
 
@@ -116,7 +118,7 @@ article img[src="./imgs/javascript.png"] {
     left: 196px;
 }
 #artCSS .chincheta{
-    top: 273px;
+    top: 622px;
     left: 627px;
 }
 
