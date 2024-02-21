@@ -70,7 +70,43 @@ nav ul{
     padding-top: 8px;
 }
 /*Elementos de sub menu*/
-
+.menuDesplegable > ul {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    border-radius: 3px;
+    height: 0;
+    overflow: hidden;
+    z-index: 2;
+    transition: height 0.4s linear;
+}
+.menuDesplegable li {
+    margin: 0;
+    padding: 8px 8px;
+    font-size: 16px;
+    background-color: #e34c36;
+}
+.menuDesplegable li:nth-child(odd) {
+    background-color: #f06529;
+}
+.menuDesplegable li:hover {
+    background-color: #ff7e42;
+}
+.menuDesplegable ul:before { /*Triángulo del menu*/
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    border: 5px solid transparent;
+    border-bottom-color: #e34c26;
+    left: 50%;
+    top: -5px;
+    margin-left: -5px;
+}
+.menuDesplegable:hover ul {
+    height: 100px;
+}
 
 /*---Cuerpo---*/
 
@@ -118,7 +154,7 @@ article img[src="./imgs/javascript.png"] {
     left: 196px;
 }
 #artCSS .chincheta{
-    top: 622px;
+    top: 271px;
     left: 627px;
 }
 
