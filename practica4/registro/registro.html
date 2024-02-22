@@ -15,11 +15,11 @@
 		<ul>
 			<li>
 				<label for="nombre">Mi nombre es:</label>
-				<input type="text" id="nombre" name="nombre">
+				<input type="text" id="nombre" name="nombre" required >
 			</li>
 			<li>
 				<label for="email">Mi email es:</label>
-				<input type="text" id="email" name="email">
+				<input type="email" id="email" name="email" required multiple>
 			</li>
 			<li>
 				<label for="recuerdame">Recuérdame en este equipo</label>
@@ -32,11 +32,11 @@
 			<li>
 				<label for="password1">Me gustaría que mi password fuera:</label>
 				<p>(al menos 6 caracteres, sin espacios)</p>
-				<input type="password" id="password1" name="password1">
+				<input type="password" id="password1" name="password1" required>
 			</li>
 			<li>
 				<label for="password2">Mi password repetida es:</label>
-				<input type="password" id="password2" name="password2">
+				<input type="password" id="password2" name="password2" required>
 			</li>
 			<li>
 				<label for="conocimientos">En una escala de 1 a 10, mis conocimientos de HTML5 son:</label>
@@ -44,7 +44,7 @@
 			</li>
 			<li>
 				<label for="fechaInicio">Por favor, inicia mi suscripción el día:</label>
-				<input type="text" id="fechaInicio" name="fechaInicio">
+				<input type="text" id="fechaInicio" name="fechaInicio" required>
 			</li>
 			<li>
 				<label for="cantidad">Me gustaría recibir <input type="text" name="cantidad" id="cantidad" value="1"> copias de <cite>El manual de HTML5</cite>.</label>
