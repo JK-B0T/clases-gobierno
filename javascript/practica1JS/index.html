@@ -6,6 +6,149 @@
         <title>Práctica 1 JS</title>
     </head>
     <body>
-        
     </body>
+    <script>
+        console.log(`EJERCICIO 1 (0.5 puntos)
+        ¿Qué tipo de variable usarías para estos valores?
+
+        a) Tu edad.
+        Let (numérica)
+
+        b) Tu DNI.
+        const (string)
+
+        c) Un precio en euros.
+        let (numérica) aunque podría ser bigint si hablamos de precios desorbitados.
+        
+        d) Tu altura en centímetros.
+        let (numérica)
+        
+        e) La nota de un examen.
+        let (numérica)
+        
+        f) El nombre de un cliente.
+        let (string) aunque podría ser const, depende cuanta importancia le des a la posibilidad de cambiarse  el nombre.
+        
+        g) Guardar si un usuario es mayor de edad o no.
+        const (boolean)
+        `)
+        //EJERCICIO 2--------------------------------------------------------------------------
+        console.log(`EJERCICIO 2 (0.5 puntos)  
+        ¿Qué resultados se obtienen en las siguientes operaciones?
+        Escribe un programa que realice  todas las operaciones y las muestre por consola.
+
+        a) 10 - 7 = ${10 - 7}
+        b) 40 + 2 = ${40 + 2}
+        c) 10 * 4 + 2 = ${10 * 4 + 2}
+        d) (100 / 4) + 25 - (16 / 2) = ${(100 / 4) + 25 - (16 / 2)}
+        e) 39.56 + 3 * 100 = ${39.56 + 3 * 100}
+        f) (2++) + 5 / 3 = Uncaught SyntaxError: invalid increment/decrement operand
+        `);
+        //EJERCICIO 3--------------------------------------------------------------------------
+        let x = 4;
+        let y = 6;
+        let result = x + y;
+
+        console.log(`EJERCICIO 3 (0.5 puntos)  
+        ¿Qué resultados se obtienen de las siguientes operaciones booleanas?
+        Escribe un programa  que realice todas las operaciones y las muestre por consola. 
+
+        a) let x = 4; let y = 6; let result = x + y; = ${result}
+        b) (x > 0)  = ${x > 0}
+        c) (x > 0) || (y > 7)  = ${(x > 0) || (y > 7)}
+        d) (x <= 4) && (y != 4)  = ${(x <= 4) && (y != 4)}
+        e) !((x < 4) && (y > 42)) = ${!((x < 4) && (y > 42))}
+        f) !(x < 4) || !(y > 42) = ${!(x < 4) || !(y > 42)}
+        `);
+        //EJERCICIO 4--------------------------------------------------------------------------
+        const nombre = prompt("Introduce tu nombre");
+        const primerApellido = prompt("Introduce tu primer apellido");;
+
+        console.log(`EJERCICIO 4 (1 punto)  
+        Crea un programa que solicite un nombre y un apellido
+        y muestre el nombre completo por pantalla “Nombre Apellido”.
+        Debes crear dos variables: una para el nombre y otro para el  apellido. 
+
+        Nombre Completo: ${nombre + ' ' + primerApellido}
+        `);
+        //EJERCICIO 5--------------------------------------------------------------------------
+        let dineroDolares = prompt("Introduce una cantidad monetaria en dólares")
+
+        console.log(`EJERCICIO 5 (1 punto)  
+        Crea un programa que solicite por consola al usuario un valor en dólares y lo convierta a euros.
+
+        Capital en dólares: ${dineroDolares}$
+        Capital en euros (del día 22/03/2024): ${dineroDolares * 0.92}€
+        `);
+        //EJERCICIO 6--------------------------------------------------------------------------
+        function toBoolean(value) { //Función para convertir un string con valor "true" o "false" a su correspondiente valor en booleano.
+            if(value.toLowerCase() == "true") {
+                return true;
+            } else if(value.toLowerCase() == "false"){
+                return false;
+            } else {
+                return undefined;
+            }
+        }
+        
+        let bool1;
+        let bool2;
+
+        while (bool1 != true && bool1 != false) { //Comprobación de que el usuario introduce un valor booleano
+            bool1 = toBoolean(prompt("Introduce el primer valor booleano (true/false)"));
+        }
+        while (bool2 != true && bool2 != false) {
+            bool2 = toBoolean(prompt("Introduce el primer valor booleano (true/false)"));
+        }
+
+        console.log(`EJERCICIO 6 (1 punto)  
+        Crea un programa que solicite al usuario dos valores booleanos y compruebe:  
+         
+        1. El resultado con una operación AND (bool1 = ${bool1} && bool2 = ${bool2} ): ${bool1 && bool2}
+        2. El resultado con una operación OR (bool1 = ${bool1} || bool2 = ${bool2} ): ${bool1 || bool2}
+        `);
+        //EJERCICIO 7--------------------------------------------------------------------------
+        let num = prompt("Introduce un número")
+        let resultado = '';
+
+        if(num % 2 >= 1) {
+            resultado = "El número '" + num + "' no es par.";
+        } else {
+            resultado = "El número '" + num + "' es par.";
+        }
+        
+        console.log(`EJERCICIO 7 (1.5 puntos)  
+        Investiga cómo hacer un programa que compruebe si un número es par. 
+
+        ${resultado}
+        `);
+        //EJERCICIO 8--------------------------------------------------------------------------
+        let name = prompt("Introduzca su nombre");
+        let edad = prompt("Introduzca su edad");
+        let sueldoMensual = prompt("Introduzca su sueldo mensual");
+
+        console.log(`EJERCICIO 8 (2 puntos)  
+        Escribe un programa que solicite al usuario los siguientes datos:
+        nombre, edad, sueldo mensual.  
+
+        El nombre es ${name}
+        Años restantes hasta la jubilación: ${67 - edad}
+        Jubilado: ${!((67 - edad) > 0)}
+        Salario anual: ${12 * sueldoMensual}
+        `);
+        //EJERCICIO 9--------------------------------------------------------------------------
+        let nombreProducto = prompt("Introduzca el nombre del producto");
+        let precio = prompt("Introduzca el precio del producto");
+        let cantidadStock = prompt("Introduzca su cantidad en stock");
+
+        console.log(`EJERCICIO 9 (2 puntos)  
+        Escribe un programa que solicite al usuario los siguientes datos sobre un producto:
+        nombre, precio, cantidad en stock.  
+
+        Nombre del producto: ${nombreProducto}
+        Precio por unidad: ${precio} €
+        Cantidad en stock: ${cantidadStock}
+        Valor total del stock: ${cantidadStock * precio} €
+        `);
+    </script>
 </html>
