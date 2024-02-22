@@ -6,7 +6,6 @@
 
 input 
 { 
-	vertical-align:middle;  
 	color: #282828;
 	background-color: transparent;
 	border: dotted #484848;	
@@ -96,6 +95,7 @@ input[type=submit]
 	opacity: 0.8;
 	-webkit-transition: opacity .25s linear;
 	-moz-transition: opacity .25s linear;
+	transition: opacity .25s linear;
 }
 
 input[type=submit]:hover 
