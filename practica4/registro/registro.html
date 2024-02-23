@@ -27,27 +27,30 @@
 			</li>
 			<li>
 				<label for="url">Mi dirección web es:</label>
-				<input type="text" id="url" name="url">
+				<input type="url" id="url" name="url" placeholder="http://ejemplo.com">
 			</li>
 			<li>
 				<label for="password1">Me gustaría que mi password fuera:</label>
 				<p>(al menos 6 caracteres, sin espacios)</p>
-				<input type="password" id="password1" name="password1" required>
+				<input type="password" id="password1" name="password1" pattern="\S{6,}" required>
 			</li>
 			<li>
 				<label for="password2">Mi password repetida es:</label>
-				<input type="password" id="password2" name="password2" required>
+				<input type="password" id="password2" name="password2" pattern="\S{6,}" required>
 			</li>
 			<li>
 				<label for="conocimientos">En una escala de 1 a 10, mis conocimientos de HTML5 son:</label>
-				<input type="text" id="conocimientos" name="conocimientos">
+				<input type="range" id="conocimientos" name="conocimientos" min="1" max="10">
 			</li>
 			<li>
 				<label for="fechaInicio">Por favor, inicia mi suscripción el día:</label>
-				<input type="text" id="fechaInicio" name="fechaInicio" required>
+				<input type="date" id="fechaInicio" name="fechaInicio" placeholder="dd/mm/aaaa" required>
 			</li>
 			<li>
-				<label for="cantidad">Me gustaría recibir <input type="text" name="cantidad" id="cantidad" value="1"> copias de <cite>El manual de HTML5</cite>.</label>
+				<label for="cantidad">Me gustaría recibir 
+					<input type="number" name="cantidad" id="cantidad" value="1" min="0" max="5"> 
+					copias de <cite>El manual de HTML5</cite>.
+				</label>
 			</li>
 			<li>
 				<label for="tambienCSS3">También regístrame para <cite>El manual de CSS3</cite></label>
@@ -61,8 +64,48 @@
 </body>
 
 <script>
-	function iniciar() {
-		
+	//const boton = document.getElementById("registro-submit");
+	let fechaActual = new Date();
+	let fechaInicio;
+
+	let pass1;
+	let pass2;
+
+	function validarContrasenya() {
+		console.log(pass1.value, pass2.value);
+		if (pass1.value !== pass2.value) {
+			pass2.setCustomValidity("Las passwords deben coincidir");
+		} else {
+			pass2.setCustomValidity('');
+		}
 	}
+
+	function validarFecha() {
+		console.log(fechaInicio.valueAsDate, fechaActual);
+		if (fechaInicio.valueAsDate < fechaActual) {
+			fechaInicio.setCustomValidity("La fecha de inicio no puede ser menor a la fecha actual");
+		} else {
+			fechaInicio.setCustomValidity('');
+		}
+	}
+
+	function iniciar() {
+		document.getElementById("nombre").focus();
+		pass1 = document.getElementById("password1");
+		pass2 = document.getElementById("password2");
+		fechaInicio = document.getElementById("fechaInicio");
+
+		pass1.addEventListener("input", validarContrasenya, false);
+		pass2.addEventListener("input", validarContrasenya, false);
+		fechaInicio.addEventListener("input", validarFecha, false);
+	}
+
+	window.addEventListener("load", iniciar
+	, false);
+
+	/*boton.addEventListener("click", () => { //Añade un evento de click al submit donde se compueba si las contraseñas son iguales y si la fecha de inicio es menor a la acutal
+		
+
+	});*/
 </script>
 </html>

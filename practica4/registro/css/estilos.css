@@ -112,3 +112,23 @@ label[for=cantidad], #cantidad
 {
 	width: 30px;
 }
+
+label::before + input[required] {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    content: "";
+    background: url(../../imgs-registro/required.png) no-repeat 0 0;
+    background-size: 100%;
+}
+
+input[required]::after{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    content: "";
+    background: url(../../imgs-registro/required.png) no-repeat 0 0;
+    background-size: 100%;
+}
