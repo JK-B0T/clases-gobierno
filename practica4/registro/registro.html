@@ -6,7 +6,7 @@
   <meta name="description" content="HTML5, CSS3">
   <meta name="author" content="Aaron Grau">
   <link rel="stylesheet" href="css/estilos.css">
-
+  <script src="./scripts/formulario.js"></script>
 </head>
 <body>
 
@@ -62,50 +62,4 @@
 		</ul>
 	</form>
 </body>
-
-<script>
-	//const boton = document.getElementById("registro-submit");
-	let fechaActual = new Date();
-	let fechaInicio;
-
-	let pass1;
-	let pass2;
-
-	function validarContrasenya() {
-		console.log(pass1.value, pass2.value);
-		if (pass1.value !== pass2.value) {
-			pass2.setCustomValidity("Las passwords deben coincidir");
-		} else {
-			pass2.setCustomValidity('');
-		}
-	}
-
-	function validarFecha() {
-		console.log(fechaInicio.valueAsDate, fechaActual);
-		if (fechaInicio.valueAsDate < fechaActual) {
-			fechaInicio.setCustomValidity("La fecha de inicio no puede ser menor a la fecha actual");
-		} else {
-			fechaInicio.setCustomValidity('');
-		}
-	}
-
-	function iniciar() {
-		document.getElementById("nombre").focus();
-		pass1 = document.getElementById("password1");
-		pass2 = document.getElementById("password2");
-		fechaInicio = document.getElementById("fechaInicio");
-
-		pass1.addEventListener("input", validarContrasenya, false);
-		pass2.addEventListener("input", validarContrasenya, false);
-		fechaInicio.addEventListener("input", validarFecha, false);
-	}
-
-	window.addEventListener("load", iniciar
-	, false);
-
-	/*boton.addEventListener("click", () => { //Añade un evento de click al submit donde se compueba si las contraseñas son iguales y si la fecha de inicio es menor a la acutal
-		
-
-	});*/
-</script>
 </html>
