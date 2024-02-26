@@ -1,4 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Aguafina+Script&display=swap');/*Aquafina Script*/
+
 #contenedorFormulario ul {
     list-style: none;
     padding: 0;
+}
+
+main {
+    background-image: url(../imgs-curso/fondoForm.jpg);
+    background-repeat: no-repeat;
+    padding: 3em 5em;
+}
+
+#contenedorFormulario {
+    position: relative;
+    display: inline-block;
+    margin: 50px;
+    width: 600px;
+    padding: 20px 50px;
+    background-color: rgb(200, 200, 200, 0.7);
+    text-align: left;
+    box-shadow: 3px 0px 8px rgb(0, 0, 0, 0.4);
+}
+
+main h1 {
+    position: absolute;
+    top: -16px;
+    left: 490px;
+    background-color: rgb(255, 255, 255, 0.7);
+    font-family: "Aguafina Script";
+    color: #333;
+    font-style: italic;
+    letter-spacing: 5px;
+    text-shadow: 0px 0px 2px #777;
+    padding: 0px 10px;
+}
+
+textarea,
+input:not([type="submit"]) {
+    display: inline-block;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0px 1px 4px rgb(0, 0, 0, 0.3), inset 0px 0px 40px rgb(0, 0, 0, 0.1);
+    color: black;
+    font-weight: bold;
+    padding: 1px 45px 4px;
+    margin-bottom: 10px;
+    transition: 0.4s all ease-in;
+}
+
+[type="text"],
+[type="email"] {
+    height: 32px;
+    width: 330px;
+    background-repeat: no-repeat;
+    background-position: 10px;
+}
+[type="text"]:focus,
+[type="email"]:focus {
+    width: 370px;
+    box-shadow: 0px 0px 12px rgb(255, 255, 255);
+}
+[type="text"]:invalid {
+    background-image: url(../imgs-curso/icon-nombre.png), url(../imgs-curso/invalid.png);
+    background-position-x: 390px;
+}
+[type="text"]:valid {
+    background-image: url(../imgs-curso/icon-nombre.png), url(../imgs-curso/invalid.png);
+    background-position-x: 390px;
+}
+[type="email"]:invalid {
+    background-image: url(../imgs-curso/icon-nombre.png), url(../imgs-curso/invalid.png);
+    background-position-x: 390px;
+}
+[type="email"]:valid {
+    background-image: url(../imgs-curso/icon-nombre.png), url(../imgs-curso/invalid.png);
+    background-position-x: 390px;
 }
