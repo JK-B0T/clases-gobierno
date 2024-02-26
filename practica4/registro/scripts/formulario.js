@@ -5,7 +5,7 @@
 	let pass1;
 	let pass2;
 
-	function validarContrasenya() { //Función para verificar que 2 contraseñas son iguales
+	function validarContrasenya() { //Verifica que 2 contraseñas son iguales
 		console.log(pass1.value, pass2.value);
 		if (pass1.value !== pass2.value) {
 			pass2.setCustomValidity("Las passwords deben coincidir");
@@ -14,7 +14,7 @@
 		}
 	}
 
-	function validarFecha() { //Función para verificar que 1 fecha es menor a la fecha actual
+	function validarFecha() { //Verifica que 1 fecha es menor a la fecha actual
 		console.log(fechaInicio.valueAsDate, fechaActual);
 		if (fechaInicio.valueAsDate < fechaActual) {
 			fechaInicio.setCustomValidity("La fecha de inicio no puede ser menor a la fecha actual");
@@ -34,5 +34,4 @@
 		fechaInicio.addEventListener("input", validarFecha, false);
 	}
 
-	window.addEventListener("load", iniciar
-	, false);
+	window.addEventListener("load", iniciar, false);

@@ -1,3 +1,12 @@
+@font-face {
+	font-family: LeagueGothic;
+	src: url(../../fonts/League_Gothic-webfont.woff);
+}
+@font-face {
+	font-family: AcknowledgementMedium;
+	src: url(../../fonts/Acknowledgement-webfont.woff);
+}
+
 * 
 {
 	margin:0;
@@ -54,7 +63,7 @@ form ul li
 
 label 
 {
-  font-family: Tahoma, Geneva, sans-serif;
+  font-family: LeagueGothic, Tahoma, Geneva, sans-serif;
   display:block;
   margin: auto;
   text-align:center;
@@ -67,8 +76,12 @@ form p
 
 form h1 
 {
+	font-family: AcknowledgementMedium, sans-serif;
 	font-size: 2em;
 	padding-bottom: 20px;
+	background-image: url(../../imgs-registro/bg-formtitle-left.png), url(../../imgs-registro/bg-formtitle-right.png);
+	background-position: left, right;
+	background-repeat: no-repeat;
 }
 
 input[type=submit]
@@ -113,12 +126,29 @@ label[for=cantidad], #cantidad
 	width: 30px;
 }
 
-label::after + input{
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    margin-right: 5px;
-    content: "";
-    background: url(../../imgs-registro/required.png) no-repeat 0 0;
-    background-size: 100%;
+/*Imágenes en el campo input*/
+input[required] { 
+	background-image: url(../../imgs-registro/required.png);
+	background-position: right;
+	background-repeat: no-repeat;
+	background-size: 1em;
+  }
+input[required]:focus:valid { 
+	background-image: url(../../imgs-registro/valid.png);
+	background-position: right;
+	background-repeat: no-repeat;
+	background-size: 1.5em;
+  }
+input[required]:focus:invalid { 
+	background-image: url(../../imgs-registro/invalid.png);
+	background-position: right;
+	background-repeat: no-repeat;
+	background-size: 1.5em;
+  }
+/*Texto seleccionado*/
+input::selection {
+	background-color: #484848;
+	color: #fff;
+	text-shadow: 0;
 }
+
