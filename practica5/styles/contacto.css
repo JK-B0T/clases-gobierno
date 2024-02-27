@@ -8,13 +8,13 @@
 main {
     background-image: url(../imgs-curso/fondoForm.jpg);
     background-repeat: no-repeat;
-    padding: 3em 5em;
+    background-size: cover;
 }
 
 #contenedorFormulario {
     position: relative;
-    display: inline-block;
-    margin: 50px;
+    display: block;
+    margin: auto;
     width: 600px;
     padding: 20px 50px;
     background-color: rgb(200, 200, 200, 0.7);
@@ -47,31 +47,59 @@ input:not([type="submit"]) {
     transition: 0.4s all ease-in;
 }
 
+textarea {
+    font-family: Arial;
+    font-weight: 1em;
+    width: 90px;
+    height: 150px;
+    background-image: url(../imgs-curso/icon-mensaje.png);
+    background-repeat: no-repeat;
+    background-position: 10px;
+}
+textarea:focus {
+    box-shadow: 0px 0px 12px rgb(255, 255, 255);
+}
+
 [type="text"],
 [type="email"] {
     height: 32px;
     width: 330px;
     background-repeat: no-repeat;
     background-position: 10px;
+    background-position-x: 10px, 390px;
 }
 [type="text"]:focus,
 [type="email"]:focus {
     width: 370px;
     box-shadow: 0px 0px 12px rgb(255, 255, 255);
+    background-position-x: 10px, 430px;
 }
 [type="text"]:invalid {
     background-image: url(../imgs-curso/icon-nombre.png), url(../imgs-curso/invalid.png);
-    background-position-x: 390px;
 }
 [type="text"]:valid {
-    background-image: url(../imgs-curso/icon-nombre.png), url(../imgs-curso/invalid.png);
-    background-position-x: 390px;
+    background-image: url(../imgs-curso/icon-nombre.png), url(../imgs-curso/valid.png);
 }
 [type="email"]:invalid {
-    background-image: url(../imgs-curso/icon-nombre.png), url(../imgs-curso/invalid.png);
-    background-position-x: 390px;
+    background-image: url(../imgs-curso/icon-correo.png), url(../imgs-curso/invalid.png);
 }
 [type="email"]:valid {
-    background-image: url(../imgs-curso/icon-nombre.png), url(../imgs-curso/invalid.png);
-    background-position-x: 390px;
+    background-image: url(../imgs-curso/icon-correo.png), url(../imgs-curso/valid.png);
+}
+
+input[required] + label::after {
+    content: " *";
+}
+
+input[type="submit"] {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #434343;
+    color: white;
+    background-image: linear-gradient(to bottom, #5e5e5e, #2a2a2a);
+    box-shadow: 0px 1px 1px #353535 inset;
+    cursor: pointer;
+}
+input[type="submit"]:hover {
+    background-image: linear-gradient(to top, #5e5e5e, #2a2a2a);
 }

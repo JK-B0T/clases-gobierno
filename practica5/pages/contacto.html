@@ -34,13 +34,22 @@
                     <form>
                         <ul>
                             <li>
-                                <input type="text" placeholder="Escriba su nombre" required>
+                                <input type="text" id="campoNombre" list="nombres" placeholder="Escriba su nombre" required>
+                                <label></label>
+                                <datalist id="nombres">
+                                    <option value="alex"></option>
+                                    <option value="juan"></option>
+                                    <option value="ana"></option>
+                                    <option value="pedro"></option>
+                                </datalist>
                             </li>
                             <li>
-                                <input type="email" placeholder="Escriba su email" required>
+                                <input type="email" id="campoCorreo" placeholder="Escriba su email" required>
+                                <label></label>
                             </li>
                             <li>
                                 <textarea  placeholder="Su mensaje..." required></textarea>
+                                <label></label>
                             </li>
                             <li>
                                 <input type="submit" value="Enviar">
@@ -55,4 +64,5 @@
             </footer>
         </div class="page">
     </body>
+    <script src="../scripts/contacto.js"></script>
 </html>
