@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+</body>
+
+<script>
+/*EJERCICIO 1----------------------------------*/
+console.log(`EJERCICIO 1 (1 punto)
+Escribe un programa que solicite al usuario ingresar un número y determine si es mayor o menor que 0, o cero. El programa debe mostrar un mensaje indicando el resultado.
+`);
+const num = prompt("EJ1: Introduzca un número");
+
+if (num > 0) {
+    console.log(num + " es mayor a 0." );
+} else if (num < 0) {
+    console.log(num + " es menor a 0." );
+} else {
+    console.log(num + " es literalmente 0." );
+}
+
+/*EJERCICIO 2----------------------------------*/
+console.log(`EJERCICIO 2 (1 punto)
+Escribe un programa que solicite al usuario ingresar su calificación en un examen (un número entre 0 y 10). El programa debe mostrar un mensaje indicando si el usuario aprobó o suspendió el examen.
+`);
+let nota = prompt("EJ2: Introduzca su nota de examen (de 0 a 10)");
+while (!(nota >= 0 && nota <= 10)) {
+    alert("Error-EJ2: Su nota no está entre 0 y 10");
+    nota = prompt("EJ2: Vuelva a introducir una nota en el rango correcto (de 0 a 10)");
+}
+
+if (nota >= 5) {
+    console.log("Usted a aprobado el examen");
+} else if (nota < 5) {
+    console.log("Usted a suspendido el exmaen, lamentable." );
+} else {
+    console.log("Error-EJ2: nota de examen no válida." );
+}
+
+/*EJERCICIO 3----------------------------------*/
+console.log(`EJERCICIO 3 (1 punto)
+Escribe un programa que solicite al usuario ingresar un número y determine si es par o impar. El programa debe mostrar un mensaje indicando si el número es par o impar. Utiliza sentencias if/else para realizar el ejercicio.
+`);
+const num1 = prompt("EJ3: Introduce un número entero");
+
+if (num1 % 2 == 0 || num1 == 0) {
+    console.log(num1 + " es par.");
+} else {
+    console.log(num1 + " es impar.");
+}
+
+/*EJERCICIO 4----------------------------------*/
+console.log(`EJERCICIO 4 (1 punto)
+Crea un programa que solicite al usuario un número entero y muestre por pantalla si ese número es par y positivo. En caso contrario debe indicar si es negativo, impar o ambos.
+`);
+
+let num2 = prompt("EJ4: Introduce un número entero");
+while (num2 % 1 != 0) {
+    alert("Error-EJ4: El número introducido no es entero");
+    num2 = prompt("EJ4: Vuelva a introducir un número entero");
+}
+
+if(num2 >= 0) {
+    if (num2 % 2 == 0 || num2 == 0) {
+        console.log(num2 + " es par y positivo.");
+    } else {
+        console.log(num2 + " es impar y positivo.");
+    }
+} else {
+    if (num2 % 2 == 0) {
+        console.log(num2 + " es par y negativo.");
+    } else {
+        console.log(num2 + " es impar y negativo.");
+    }
+}
+
+/*EJERCICIO 5----------------------------------*/
+console.log(`EJERCICIO 5 (1 punto)
+Crea un programa que solicite al usuario dos valores enteros, los compare y muestre por pantalla si uno es mayor que el otro o si son iguales.
+`);
+
+const a = prompt("EJ6: Introduce un número");
+const b = prompt("EJ6: Introduce otro número");
+
+if (+a > +b) {
+    console.log(a + " es mayor a " + b);
+} else if (+b > +a) {
+    console.log(b + " es mayor a " + a);
+} else {
+    console.log(a + " es igual a " + b);
+}
+
+/*EJERCICIO 6----------------------------------*/
+console.log(`EJERCICIO 6 (1 punto)
+Crea un programa que solicite al usuario un número entero y haga lo siguiente: Si el número es positivo lo debe convertir a negativo y si es negativo lo debe convertir a positivo.
+`);
+
+let num3 = prompt("EJ6: Introduce un número entero");
+let tempNum;
+while (num3 % 1 != 0) {
+    alert("Error-EJ6: El número introducido no es entero");
+    num3 = prompt("EJ6: Vuelva a introducir un número entero");
+}
+tempNum = num3 * -1;
+
+console.log("El número '" + num3 + "' ha sido convertido a '" + tempNum + "'.");
+
+/*EJERCICIO 7----------------------------------*/
+console.log(`EJERCICIO 7 (1 punto)
+Crea un programa que solicite al usuario su peso en kilos y su altura en centímetros y calcule el IMC (peso / altura2).
+Debe mostrar el resultado y luego hacer el diagnóstico:
+• Si el IMC es menor que 16 se muestra el mensaje: “Peso bajo”.
+• Si el IMC está entre (>=)16 y 25(<) se muestra el mensaje: “Peso normal”.
+• Si el IMC está entre 25 y 30(<) se muestra el mensaje: “Sobrepeso”.
+• Si el IMC es superior a 30 se muestra el mensaje: “Obesidad”.
+`);
+
+const altura = prompt("EJ7: Introduzca su altura en centímetros");
+const peso = prompt("EJ7: Introduzca su peso en kilogramos");
+let alturaMetros = (altura / 100);
+let imc = (peso / alturaMetros ** 2).toFixed(2);
+
+if (imc < 16) {
+    console.log("Su IMC es de " + imc + ", tiene un peso bajo.")
+} else if (imc >= 16 && imc < 25) {
+    console.log("Su IMC es de " + imc + ", tiene un peso normal.")
+} else if (imc >= 25 && imc < 30) {
+    console.log("Su IMC es de " + imc + ", tiene sobrepeso.")
+} else {
+    console.log("Su IMC es de " + imc + ", tiene obesidad.")
+}
+
+/*EJERCICIO 8----------------------------------*/
+console.log(`EJERCICIO 8 (1 punto)
+Crea un programa que solicite al usuario un dorsal de jugador y haga lo siguiente: comprobar que ese número está entre 0 y 99. Si no lo está, entonces el programa debe terminar con un mensaje de error.
+Si el número está entre 0 y 99 el programa debe mostrar un texto con la posición que corresponde a cada dorsal:
+• Si el usuario ha tecleado 1 el texto será “Portero”
+• Si el usuario ha tecleado 3,4,5 el texto será “Defensa”
+• Si el usuario ha tecleado 6, 8, 11 el texto será “Centro campista”
+• Si el usuario ha tecleado 9 el texto será “Delantero”.
+• Para cualquier otra opción el texto será “Cualquiera”.
+`);
+
+let dorsal = prompt("EJ8: Introduce un número dorsal entre 0 y 99");
+while (!(dorsal >= 0 && dorsal < 100)) {
+    alert("Error-EJ8: El número introducido no esta en el rango permitido");
+    dorsal = prompt("EJ8: Vuelva a introducir un número entre 0 y 99");
+}
+
+switch (dorsal) {
+    case "1":
+        console.log("El número " + dorsal + " está en la posición de portero");
+        break;
+    case "3":
+    case "4":
+    case "5":
+        console.log("El número " + dorsal + " está en la posición de defensa");
+        break;
+    case "6":
+    case "8":
+    case "11":
+        console.log("El número " + dorsal + " está en la posición de centro campista");
+        break;
+    case "9":
+        console.log("El número " + dorsal + " está en la posición de delantero");
+        break;
+    default:
+        console.log("El número " + dorsal + " está en una posición cualquiera");
+}
+
+/*EJERCICIO 9----------------------------------*/
+console.log(`EJERCICIO 9 (1 punto)
+Crea un programa que solicite al usuario una cantidad monetaria y un carácter d, l, y (dólar, libra, yen). Según el carácter introducido por el usuario el programa debe convertir la cantidad monetaria (que serán euros) a la moneda correspondiente. No es preciso que el tipo de cambio sea real.
+`);
+
+let tipoDeMoneda = prompt("EJ9: Introduce un tipo de moneda válido (y para Yenes / d para dólares / l para libras)");
+while (!(tipoDeMoneda == 'd' || tipoDeMoneda == 'l' || tipoDeMoneda == 'y')) {
+    alert("Error-EJ9: El carácter introducido no se corresponde con ninguna moneda válida");
+    tipoDeMoneda = prompt("EJ9: Vuelva a introducir un tipo de moneda válido (y para Yenes / d para dólares / l para libras)");
+}
+let capital = prompt("EJ9: Introduce un la cantidad monetaria");
+
+if (tipoDeMoneda == "y") {
+    console.log("En el día 27/02/2024, " + capital + "¥ equivalen a " + ((capital * 0.0061).toFixed(2)) + "€.");
+} else if (tipoDeMoneda == "d") {
+    console.log("En el día 27/02/2024, " + capital + "$ equivalen a " + ((capital * 0.92 ).toFixed(2)) + "€.");
+} else {
+    console.log("En el día 27/02/2024, " + capital + "£ equivalen a " + ((capital * 1.17 ).toFixed(2)) + "€.");
+}
+
+
+/*EJERCICIO 10----------------------------------*/
+console.log(`EJERCICIO 10 (1 punto)
+Investiga y explica la diferencia entre los operadores de igualdad == y === en JavaScript.
+¿Cuál será el resultado de los dos condicionales?
+
+Valor 1 == Valor 2 Comprueba que el valor 1 tenga un valor igual al 2, independientemente del tipo de variable que sea.
+Valor 1 === Valor 2 Comprueba que el valor 1 no solo tenga el mismo valor que el 2, si no que además ese valor sea del mismo tio de variable que el 2.
+
+En la imagen de ejemplo, el primer if dirá que los valores son iguales, en el segundo dirá que no lo son porque el primero es un numero y el segundo un string.
+`);
+
+/*EJERCICIO OPCIONAL----------------------------------*/
+console.log(`EJERCICIO OPCIONAL
+¿Cómo mejorarías este ejercicio visto en clase? Escribe un programa que solicite un número un mes del año y muestre el número de días que tiene. En caso de introducir un mes desconocido, mostrar un mensaje de advertencia.
+`);
+
+const mes = prompt("EJO: Introduce un mes del año en español").toLowerCase();
+switch (mes) {
+    case "enero":
+    case "marzo":
+    case "mayo":
+    case "julio":
+    case "agosto":
+    case "octubre":
+    case "diciembre":
+        console.log("El mes " + mes + " tiene 31 días.");
+        break;
+    case "abril":
+    case "junio":
+    case "septiembre":
+    case "noviembre":
+        console.log("El mes " + mes + " tiene 30 días.");
+        break;
+    case "febrero":
+        console.log("El mes " + mes + " tiene 28/29 días.");
+        break;
+    default:
+        console.log("El mes " + mes + " no existe en el idioma español.");
+}
+
+</script>
+</html>
