@@ -84,6 +84,16 @@ if (numPar > 0 && numPar % 2 == 0) {
 console.log(`EJERCICIO 4 (1 punto)
 Crea un programa que muestre todas las tablas de multiplicar desde el número 0 al 10.
 `);
+let tablaMultiplicar = "";
+
+for (let i = 0; i <= 10; i++) {
+    tablaMultiplicar += `Tabla del ${i} ==> `
+    for (let j = 0; j <= 10; j++) {
+        tablaMultiplicar += `${(i * j)} `;  
+    }
+    tablaMultiplicar += "\n"; 
+}
+console.log(tablaMultiplicar);
 
 /*EJERCICIO 5----------------------------------*/
 console.log(`EJERCICIO 5 (1 punto)
