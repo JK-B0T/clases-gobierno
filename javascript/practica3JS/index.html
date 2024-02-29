@@ -57,6 +57,10 @@ Crea un programa que solicite un número:
 Si el número es mayor que 0, el programa debe mostrar por pantalla un saludo tantas veces como el valor del número.
 Si el número es menor o igual a 0, debes mostrar un mensaje de advertencia al usuario.
 `);
+const numHolas = prompt("Introduce el número de holas que quieres imprimir");
+for (let i = +numHolas; i > 0; i--) {
+    console.log("Hola");
+}
 
 /*EJERCICIO 3----------------------------------*/
 console.log(`EJERCICIO 3 (1 punto)
@@ -65,6 +69,16 @@ Crea un programa que haga lo siguiente:
 - Comprueba que sea par y mayor que 0
 - Y si es así, muestre por pantalla una línea con el carácter “*” (asterisco) tantas veces como el valor del número.
 `);
+const numPar = prompt("Introduce un número par y mayor que cero");
+let stringAsteriscos = "";
+if (numPar > 0 && numPar % 2 == 0) {
+    for (let i = numPar; i > 0; i--) {
+        stringAsteriscos += "*";
+    }
+    console.log(stringAsteriscos);
+} else {
+    console.log("ERROR-EJ3: El número no tiene un formato válido")
+}
 
 /*EJERCICIO 4----------------------------------*/
 console.log(`EJERCICIO 4 (1 punto)
