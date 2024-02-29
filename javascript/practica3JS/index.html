@@ -16,7 +16,7 @@ Es decir, una lista de números separados por comas que vaya desde el número te
 Haz este ejercicio usando los 3 bucles: while, do while y for.
 `);
 let cuentaAtras = "";
-let num = prompt("Introduce el número de la cuenta atrás");
+let num = prompt("EJ1-Introduce el número de la cuenta atrás:");
 
 for (let i = num; i >= 0; i--) {
     if (i != 0) {
@@ -57,7 +57,7 @@ Crea un programa que solicite un número:
 Si el número es mayor que 0, el programa debe mostrar por pantalla un saludo tantas veces como el valor del número.
 Si el número es menor o igual a 0, debes mostrar un mensaje de advertencia al usuario.
 `);
-const numHolas = prompt("Introduce el número de holas que quieres imprimir");
+const numHolas = prompt("EJ2-Introduce el número de holas que quieres imprimir:");
 for (let i = +numHolas; i > 0; i--) {
     console.log("Hola");
 }
@@ -69,7 +69,7 @@ Crea un programa que haga lo siguiente:
 - Comprueba que sea par y mayor que 0
 - Y si es así, muestre por pantalla una línea con el carácter “*” (asterisco) tantas veces como el valor del número.
 `);
-const numPar = prompt("Introduce un número par y mayor que cero");
+const numPar = prompt("EJ3-Introduce un número par y mayor que cero:");
 let stringAsteriscos = "";
 if (numPar > 0 && numPar % 2 == 0) {
     for (let i = numPar; i > 0; i--) {
@@ -99,23 +99,59 @@ console.log(tablaMultiplicar);
 console.log(`EJERCICIO 5 (1 punto)
 Crea un programa que solicite al usuario un número y calcule su factorial.
 `);
+const numFactorial = prompt("EJ5-Introduce el número del cual calcular su factorial:");
+let stringFactorial = "";
+let factorial = 1;
+
+for (let i = numFactorial; i > 0; i--) {
+    factorial *= i;
+}
+console.log(`El factorial de ${numFactorial} es ${factorial}.`)
 
 /*EJERCICIO 6----------------------------------*/
 console.log(`EJERCICIO 6 (1 punto)
-Crea un programa que solicite al usuario ingresar números mayores que 0.
-El programa debe continuar solicitando números hasta que se ingrese un número negativo o cero.
+Crea un programa que solicite al usuario ingresar números mayores que 0. El programa debe continuar solicitando números hasta que se ingrese un número negativo o cero.
 Una vez que se ingrese un número negativo o cero, el programa debe mostrar la suma de todos los números enteros positivos ingresados por el usuario.
 `);
+
+let numSum = 0;
+let sum = 0;
+
+do {
+    sum += numSum;
+    numSum = +prompt("EJ6-Introduce un número positivo para hacer un sumara un sumatorio o por debajo de 1 para terminar el sumatorio:");
+} while (numSum > 0)
+console.log("El sumatorio resultante es: " + sum);
 
 /*EJERCICIO 7----------------------------------*/
 console.log(`EJERCICIO 7 (1 punto)
 Crea un programa que solicite al usuario números en un bucle hasta que el usuario introduzca 0. En ese momento, el programa debe mostrar la media de los números introducidos.
 `);
+let numSum1 = 0;
+let sum1 = 0;
+let cantidadDeElementos = -1;
+
+do {
+    sum1 += numSum1;
+    cantidadDeElementos++;
+    numSum1 = +prompt("EJ7-Introduce 0 para salir del sumatorio al que hacerle una media o un número diferente a 0 para sumar al sumatorio:");
+} while (numSum1 != 0);
+console.log(`La media del sumatorio es "${sum1}/${cantidadDeElementos}", lo cual resulta en: ${(sum1 / cantidadDeElementos).toFixed(2)}`);
 
 /*EJERCICIO 8----------------------------------*/
 console.log(`EJERCICIO 8 (1 punto)
 Crea un programa que solicite al usuario un número entero y usando ese valor debe “dibujar” en la consola una figura formada por “*”.
 `);
+const cuadrado = +prompt("EJ8-Introduce la anchura en asteriscos '*' de tu rectángulo:");
+let stringCuadrado = "";
+
+for (let i = 0; i < cuadrado; i++) {
+    for (let j = 0; j < cuadrado; j++) {
+        stringCuadrado += "*";
+    }
+    stringCuadrado += "\n";
+}
+console.log(stringCuadrado);
 
 </script>
 </html>
