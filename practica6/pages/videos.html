@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Práctica 5</title>
         <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/reproductor.css">
+        <script src="../scripts/reproductor.js"></script>
     </head>
     <body>
         <div class="page">
@@ -28,7 +30,26 @@
             </nav>
     
             <main>
+                <div id="reproductor">
+                    <video id="medio" width="720" height="400">
+                        <source src="../media/trailer.mp4">
+                        <source src="../media/trailer.ogg">
+                    </video>
+                    <div id="barra">
+                        <div id="progreso"></div>
+                    </div>
+                </div>
 
+                <nav>
+                    <input type="button" id="reiniciar" value="reiniciar">
+                    <input type="button" id="retrasar" value="&laquo">
+                    <input type="button" id="play" value="&#9658">
+                    <input type="button" id="adelantar" value="&raquo">
+                    <input type="button" id="silenciar" value="silenciar">
+                    <label>Volumen</label>
+                    <input type="button" id="menosVolumen" value="-">
+                    <input type="button" id="masVolumen" value="+">
+                </nav>
             </main>
 
             <footer>

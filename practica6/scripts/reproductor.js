@@ -65,6 +65,55 @@ function accionPlay()
 	}
 }
 
+function accionReiniciar()
+{
+	medio.currentTime = 0;
+}
+
+function accionRetrasar()
+{
+	console.log(`Tiempo anterior: ${medio.currentTime} / Nuevo tiempo : ${medio.currentTime - 5}`)
+	medio.currentTime = +medio.currentTime - 5;
+}
+
+function accionAdelantar()
+{
+	console.log(`Tiempo anterior: ${medio.currentTime} / Nuevo tiempo : ${medio.currentTime + 5}`)
+	medio.currentTime = +medio.currentTime + 5;
+}
+
+function accionSilenciar()
+{
+	if (!medio.muted) 
+	{
+		medio.muted = true;
+		silenciar.style.value="escuchar";
+	}
+	else
+	{
+		medio.muted = false;
+		silenciar.style.value="silenciar";
+	}
+}
+
+function accionMasVolumen()
+{
+	if (!(medio.volume >= 1)) 
+	{
+		medio.volume = (medio.volume + 0.1).toFixed(1);
+	}
+	console.log("Volumen: "+medio.volume);
+}
+
+function accionMenosVolumen()
+{
+	if (!(medio.volume <= 0)) 
+	{
+		medio.volume = (medio.volume - 0.1).toFixed(1)
+	}
+	console.log("Volumen: "+medio.volume);
+}
+
 //función inicial
 function iniciar() 
 {
@@ -75,12 +124,22 @@ function iniciar()
 	barra=document.getElementById('barra');
 	progreso=document.getElementById('progreso');
 	play=document.getElementById('play');
-	//obtener los objetos del resto de elementos necesarios
+	reiniciar=document.getElementById('reiniciar');
+	retrasar=document.getElementById('retrasar');
+	adelantar=document.getElementById('adelantar');
+	silenciar=document.getElementById('silenciar');
+	menosVolumen=document.getElementById('menosVolumen');
+	masVolumen=document.getElementById('masVolumen');
 	
 	//creamos los manejadores de eventos
 	play.addEventListener('click', accionPlay, false);
+	reiniciar.addEventListener('click', accionReiniciar, false);
+	retrasar.addEventListener('click', accionRetrasar, false);
+	adelantar.addEventListener('click', accionAdelantar, false);
+	silenciar.addEventListener('click', accionSilenciar, false);
+	menosVolumen.addEventListener('click', accionMenosVolumen, false);
+	masVolumen.addEventListener('click', accionMasVolumen, false);
 	barra.addEventListener('click', desplazarMedio, false);
-	//crear los manejadores de eventos para el resto de botones
 	
 }
 //primer evento que sucede cuando la página ha cargado
