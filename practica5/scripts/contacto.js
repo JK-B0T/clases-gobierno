@@ -22,6 +22,10 @@ function comprobarCorreo() {
     }
 }
 
+function enviarForm() {
+    document.getElementById("formularioContacto").submit();
+}
+
 function iniciar() {
     nombre.addEventListener("input", comprobarNombre, false);
     correo.addEventListener("input", comprobarCorreo, false);
