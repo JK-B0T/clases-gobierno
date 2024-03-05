@@ -1,5 +1,6 @@
 let nombre = document.getElementById("campoNombre");
 let correo = document.getElementById("campoCorreo");
+let form = document.getElementById("formularioContacto");
 
 function comprobarNombre() {
     switch (nombre.value) {
@@ -23,7 +24,9 @@ function comprobarCorreo() {
 }
 
 function enviarForm() {
-    document.getElementById("formularioContacto").submit();
+    if (form.checkValidity()) {
+        form.submit();
+    }
 }
 
 function iniciar() {
