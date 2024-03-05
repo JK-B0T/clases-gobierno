@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>JS básico</title>
 
         <script>
             /*
@@ -48,11 +48,12 @@
             console.log(num1<0);
             */
 
+            /*
             let num1 = prompt("Num1");
             let num2 = prompt("Num2");
             console.log(num1 > 0 && num1 < 5);
             console.log(num1 >= 0 || num2 >= 0);
-
+            */
 
             /*
             let nuHu = prompt("Huh?");
@@ -67,6 +68,74 @@
             
             /*Así es doña, 
             comentario me llaman*/
+
+            /*-----------Ejercicios de profesor Cristian-----------*/
+            /* Ejercicio 1
+            const IVA = 21;
+            let precio = prompt("Introduzca el precio en euros de su producto");
+            let precioConIVA = +precio + +precio * (IVA / 100);
+            alert(`El producto de ${precio}€ se queda en un total de ${precioConIVA}€ con IVA.`);
+            console.log(`El producto de ${precio}€ se queda en un total de ${precioConIVA}€ con IVA.`);
+            */
+            /* Ejercicio 2 
+            const ladoCuadrado = +prompt("Introduzca el lado de un cuadrado en cm");
+            alert(`Un cuadrado con un lado de ${ladoCuadrado}cm tiene un perímetro de ${ladoCuadrado * 4} y un área de ${ladoCuadrado * ladoCuadrado}.`);
+            console.log(`Un cuadrado con un lado de ${ladoCuadrado}cm tiene un perímetro de ${ladoCuadrado * 4} y un área de ${ladoCuadrado * ladoCuadrado}.`);
+            */
+            /* Ejercicio 3 
+            let kmRecorridos = +prompt("Introduzca los kilómetros recorridos");
+            let lConsumidos = +prompt("Introduzca los litros de combustible consumidos");
+            let combustiblePorKm = (lConsumidos/kmRecorridos).toFixed(3);
+            alert(`Habiendo recorrido ${kmRecorridos}km y consumido ${lConsumidos}L de combustible, su vehículo ha gastado ${combustiblePorKm} litros por km.`);
+            console.log(`Habiendo recorrido ${kmRecorridos}km y consumido ${lConsumidos}L de combustible, su vehículo ha gastado ${combustiblePorKm} litros por km.`);
+            */
+            /* Ejercicio 4 
+            let num = +prompt("Introduzca un número de 2 digitos");
+            alert(`El número ${num} tiene ${(num - (num % 10))/10} decenas y ${num - (num - (num % 10))} unidades.`);
+            console.log(`El número ${num} tiene ${(num - (num % 10))/10} decenas y ${num - (num - (num % 10))} unidades.`);
+            */
+            /* Ejercicio 5 
+            let var1 = prompt("Introduce el valor de la variable 1");
+            let var2 = prompt("Introduce el valor de la variable 2");
+            let tempVar = var1;
+            console.log(`Antes del intercambio ==> valor de var1: ${var1} / valor de var2: ${var2}.`);
+            var1 = var2;
+            var2 = tempVar;
+            console.log(`Después del intercambio ==> valor de var1: ${var1} / valor de var2: ${var2}.`);
+            */
+            /* Ejercicio 6
+            let num = +prompt("Introduce un número");
+            console.log(num % 2 == 0);
+            */
+            /* Ejercicio 7
+            let a = +prompt("Introduce un número");
+            let b = +prompt("Introduce un número");
+            console.log("a: " + a + " / b: " + b);
+            console.log(a > b ? "a es mayor." : a < b ? "b es mayor." : "a y b son iguales.");
+            */
+            /* Ejercicio 8
+            const num = prompt("Introduzca un número");
+
+            if (num > 0) {
+                console.log(num + " es positivo." );
+            } else if (num < 0) {
+                console.log(num + " es negativo." );
+            } else {
+                console.log(num + " es literalmente 0." );
+            }
+            */
+            /* Ejercicio 9*/
+            let nota = +prompt("EJ2: Introduzca su nota de examen (de 0 a 10)");
+
+            if (nota >= 8) {
+                console.log("Excelente." );
+            } else if (nota > 6 && nota < 8) {
+                console.log("Bien." );
+            } else if (nota >= 5 && nota < 6) {
+                console.log("Suficiente." );
+            } else {
+                console.log("Insuficiente." );
+            }
         </script>
 
     </head>
