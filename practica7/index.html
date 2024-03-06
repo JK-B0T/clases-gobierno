@@ -7,14 +7,15 @@
         <link rel="stylesheet" href="./styles/style.css">
     </head>
     <body>
-        <div class="page">
+        <div id="page">
             <header>
                 <img src="./imgs/logo.png" alt="Logo que es un conjunto de otros 3 logos: el de CSS, HTML y JavaScript.">
                 <h1>Curso de HTML5 y CSS3</h1>
             </header>
     
             <nav>
-                <ul>
+                <a href="#"></a>
+                <ul class="desplegado">
                     <li><a href="./index.html"><img src="./imgs/book.png" alt="icono de un libro"> <p>Contenidos</p></a></li>
                     <li class="menuDesplegable"><a href="./pages/videos.html"><img src="./imgs/film.png" alt="icono de un película"> <p>Videos</p></a>
                         <ul>
@@ -23,7 +24,7 @@
                             <li><a href="#">Video 3</a></li>
                         </ul>
                     </li>
-                    <li><a href="./pages/contacto.html"><img src="./imgs/mail.png" alt="icono de un correo"> <p>Contacto</p></a></li>
+                    <li id="contenedor-contatos"><a href="./pages/contacto.html"><img src="./imgs/mail.png" alt="icono de un correo"> <p>Contacto</p></a></li>
                 </ul>
             </nav>
     
@@ -61,17 +62,10 @@
                 </article>
             </main>
     
-            <!--hr>
-                ---------------Imagen que tenia antes de construir la página de la práctica---------------
-            <figure>
-                <img src="./imgs/cute-little-frog.jpg" alt="Rana muy chiquitita" height="400px" width="auto">
-                <figcaption>Una pequeña ranita</figcaption>
-            </figure>
-            <hr-->
-    
             <footer>
                 <p>Juan Manuel Garcia Cabot. Curso de HTML5 y CSS3</p>
             </footer>
         </div class="page">
     </body>
+    <script src="./scripts/menu.js"></script>
 </html>
