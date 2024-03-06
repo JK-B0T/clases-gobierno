@@ -1,0 +1,28 @@
+body {
+    background-color: #121212;
+}
+
+p, h2 , button{
+    color: whitesmoke;
+}
+
+button {
+    background-color: darkslategray;
+    border: 2px solid white;
+}
+button:active {
+    background-color: rgb(46, 55, 55);
+}
+
+hr {
+    width: 100%;
+}
+
+main, div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+
