@@ -21,6 +21,7 @@ function ejercicio2() {
 function ejercicio3() {
     let numArr = [];
     let sumatorio = 0;
+    let promedio = 0;
 
     for (let i = 0; i < 3; i++) {
         do {
@@ -28,11 +29,13 @@ function ejercicio3() {
         } while (numArr[i] < 1 || numArr[i] > 10);
         sumatorio += numArr[i];
     }
+    promedio = (sumatorio / 3).toFixed(2);
 
     let solucion = 
     `Número 1: ${numArr[0]}
     Número 2: ${numArr[1]}
     Número 3: ${numArr[2]}
-    El promedio de los tres es: ${(sumatorio / 3).toFixed(2)}`;
+    El promedio de los tres es: ${promedio}
+    ¿Promedio mayor a 5?: ${promedio > 5 ? true : false}`;
     document.getElementById("ej3-Output").innerText = solucion;
 }
