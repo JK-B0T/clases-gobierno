@@ -6,7 +6,7 @@ function redimensionaBarra()
 	{
 		/*se crea una variable que toma el valor, pasado a número entero
 		de lo que lleva el vídeo*/
-		var total=parseInt(medio.currentTime*maximo / medio.duration);
+		var total=parseInt(medio.currentTime*parseInt(getStyle("barra", "width")) / medio.duration);
 		//se modifica el ancho del elemento
 		progreso.style.width=total+'px';
 	}
@@ -32,7 +32,7 @@ function desplazarMedio(e)
 		para ello hay que restar su posición, dentro del elemento, del eje y*/
 		var ratonX=e.pageX-barra.offsetLeft;
 		//creamos una variable que contendrá el tiempo de dónde hemos pulsado
-		var nuevoTiempo=ratonX*medio.duration/maximo;
+		var nuevoTiempo=ratonX*medio.duration/parseInt(getStyle("barra", "width"));
 		//actualizamos el tiempo en el vídeo
 		medio.currentTime=nuevoTiempo;
 		//redimensionamos la barra con la posición del ratón
@@ -114,11 +114,16 @@ function accionMenosVolumen()
 	console.log("Volumen: "+medio.volume);
 }
 
+function getStyle(nombreElemento, nombrePropiedad){
+	var elemento = document.getElementById(nombreElemento);
+	return window.getComputedStyle(elemento,null).getPropertyValue(nombrePropiedad);
+}
+
 //función inicial
 function iniciar() 
 {
 	//se declara una variable que es el máximo de la barra
-	maximo=700;
+	maximo=parseInt(getStyle("barra", "width"));
 	//obtenemos los objetos de los elementos
 	medio=document.getElementById('medio');
 	barra=document.getElementById('barra');

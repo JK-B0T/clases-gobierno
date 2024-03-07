@@ -190,7 +190,7 @@ footer > p {
 }
 
 /*Opciones responsive*/
-@media all and (max-device-width:1024px) {
+@media all and (max-device-width: 1024px) {
     #page {
         width: 90%;
         min-width: 320px;
@@ -205,17 +205,17 @@ footer > p {
     }
 }
 
-@media all and (max-device-width:800px) {
+@media all and (max-device-width: 800px) {
     nav li {
         margin: 0 2% 1%;
     }
 }
 
-@media all and (max-device-width:571px) {
+@media all and (max-device-width: 571px) {
 
 }
 
-@media all and (max-device-width:475px) {
+@media all and (max-device-width: 475px) {
     nav > a {
         display: block;
         width: 80px;
