@@ -61,15 +61,17 @@ nav > a {
 }
 
 /*Elementos de la barra de navegación*/
-nav ul li {
-    display: inline-block;
-    margin: 0 100px 20px 100px;
+nav > ul > li {
+    flex: 0 0 auto;
     text-align: center;
     color: silver;
     font-size: 1.4em;
     font-family: "Luckiest Guy", sans-serif;
 }
 nav ul{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     list-style: none;
     padding-left: 0;
     padding-top: 8px;
@@ -78,6 +80,7 @@ nav ul{
 .menuDesplegable > ul {
     position: absolute;
     display: flex;
+    justify-content: flex-start;
     flex-direction: column;
     padding: 0;
     border-radius: 3px;
@@ -110,7 +113,8 @@ nav ul{
     margin-left: -5px;
 }
 .menuDesplegable:hover ul {
-    height: 105px;
+    padding-top: 5px;
+    height: 110px;
 }
 
 /*---Cuerpo---*/
@@ -151,17 +155,15 @@ article img[src="./imgs/javascript.png"] {
 #artJS{
     transform: rotate(2deg);
 }
+#artCSS{
+    transform: rotate(0.01deg); /*Truco para que por algún motivo la chincheta se posicione correctamente*/
+}
 #artHTML{
     transform: rotate(-2deg);
 }
-#artHTML .chincheta,
-#artJS .chincheta{
+.chincheta{
     top: -80px;
     left: 196px;
-}
-#artCSS .chincheta{
-    top: 271px;
-    left: 627px;
 }
 
 h2{ /*Texto principal de cada artículo, aquel que indica si es HTML, CSS3 o JavaScript.*/
@@ -209,7 +211,7 @@ footer > p {
     }
 }
 
-@media all and (max-device-width:570px) {
+@media all and (max-device-width:571px) {
 
 }
 
@@ -224,11 +226,13 @@ footer > p {
         background-position: center top 10px;
     }
     .desplegado {
-        display: inline-block;
+        display: flex;
+        flex-direction: column;
     }
     .desplegado li {
         display: inline-block;
         text-align: center;
+        width: 150px;
     }
     nav ul {
         display: none;
