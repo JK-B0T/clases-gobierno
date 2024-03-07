@@ -5,6 +5,9 @@ body {
 p, h2 , button{
     color: whitesmoke;
 }
+p {
+    font-family: Arial;
+}
 
 button {
     background-color: darkslategray;
