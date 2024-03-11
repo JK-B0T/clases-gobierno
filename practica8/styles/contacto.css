@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Aguafina+Script&display=swap');/*Aquafina Script*/
+
+#contenedorFormulario ul {
+    list-style: none;
+    padding: 0;
+}
+
+main {
+    background-image: url(../imgs-curso/fondoForm.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+}
+
+#contenedorFormulario {
+    position: relative;
+    display: inline-block;
+    margin: auto;
+    width: 600px;
+    padding: 20px 50px;
+    background-color: rgb(200, 200, 200, 0.7);
+    text-align: left;
+    box-shadow: 3px 0px 8px rgb(0, 0, 0, 0.4);
+}
+
+main h1 {
+    position: absolute;
+    top: -16px;
+    left: 490px;
+    background-color: rgb(255, 255, 255, 0.7);
+    font-family: "Aguafina Script";
+    color: #333;
+    font-style: italic;
+    letter-spacing: 5px;
+    text-shadow: 0px 0px 2px #777;
+    padding: 0px 10px;
+}
+
+textarea,
+input:not([type="submit"]) {
+    display: inline-block;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0px 1px 4px rgb(0, 0, 0, 0.3), inset 0px 0px 40px rgb(0, 0, 0, 0.1);
+    color: black;
+    font-weight: bold;
+    padding: 1px 45px 4px;
+    margin-bottom: 10px;
+    transition: 0.4s all ease-in;
+}
+
+textarea {
+    font-family: Arial;
+    font-weight: 1em;
+    width: 90px;
+    height: 150px;
+    background-image: url(../imgs-curso/icon-mensaje.png);
+    background-repeat: no-repeat;
+    background-position: 10px;
+}
+textarea:focus {
+    box-shadow: 0px 0px 12px rgb(255, 255, 255);
+}
+
+[type="text"],
+[type="email"] {
+    height: 32px;
+    width: 330px;
+    background-repeat: no-repeat;
+    background-position: 10px;
+    background-position-x: 10px, 390px;
+}
+[type="text"]:focus,
+[type="email"]:focus {
+    width: 370px;
+    box-shadow: 0px 0px 12px rgb(255, 255, 255);
+    background-position-x: 10px, 430px;
+}
+[type="text"]:invalid {
+    background-image: url(../imgs-curso/icon-nombre.png), url(../imgs-curso/invalid.png);
+}
+[type="text"]:valid {
+    background-image: url(../imgs-curso/icon-nombre.png), url(../imgs-curso/valid.png);
+}
+[type="email"]:invalid {
+    background-image: url(../imgs-curso/icon-correo.png), url(../imgs-curso/invalid.png);
+}
+[type="email"]:valid {
+    background-image: url(../imgs-curso/icon-correo.png), url(../imgs-curso/valid.png);
+}
+
+input[required] + label::after {
+    content: " *";
+}
+
+input[type="submit"] {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #434343;
+    color: white;
+    background-image: linear-gradient(to bottom, #5e5e5e, #2a2a2a);
+    box-shadow: 0px 1px 1px #353535 inset;
+    cursor: pointer;
+}
+input[type="submit"]:hover {
+    background-image: linear-gradient(to top, #5e5e5e, #2a2a2a);
+}
+
+@media all and (max-device-width: 1024px) {
+    #contenedorFormulario {
+        margin: 4%;
+        width: 58%;
+        padding: 2% 4%;
+    }
+
+    main h1 {
+        position: static;
+        margin: 2% 0;
+        padding: 0 1%;
+        float: right;
+    }
+
+    input:not([type="submit"]) {
+        height: 5%;
+        width: 55%;
+        background-size: 1em;
+    }
+
+    input:focus {
+        width: 61%;
+    }
+
+    textarea {
+        width: 75%;
+    }
+
+    input[type="submit"] {
+        display: block;
+    }
+
+    [type="text"]:focus,
+    [type="email"]:focus {
+        width: 60%;
+        box-shadow: 0px 0px 12px rgb(255, 255, 255);
+        background-position-x: 10px, 100%;
+    }
+}
