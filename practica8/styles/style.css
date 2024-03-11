@@ -162,15 +162,16 @@ article img[src="./imgs/javascript.png"] {
     position: absolute;
     width: 35px;
     height: 49px;
+    display: none;
 }
 #artJS{
-    transform: rotate(2deg);
+    transform: rotate(0.01deg);
 }
 #artCSS{
     transform: rotate(0.01deg); /*Truco para que por algún motivo la chincheta se posicione correctamente*/
 }
 #artHTML{
-    transform: rotate(-2deg);
+    transform: rotate(-0.01deg);
 }
 .chincheta{
     top: -80px;
@@ -198,6 +199,62 @@ footer{
 /*Centrado del texto en el pie de página*/
 footer > p {
     padding-top: 1.5%;
+}
+
+/*Animaciones*/
+
+.chincheta1{
+    left: 0px;
+    animation-name: mueveChincheta1;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    display: block;
+} 
+@keyframes mueveChincheta1 {
+    from {left: 0px;}
+    to {left: 196px;}
+}
+.article1 {
+    animation-name: animArticle1;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+@keyframes animArticle1 {
+    from {transform: rotate(0);}
+    to {transform: rotate(-2deg);}
+}
+
+.chincheta2{
+    left: 0px;
+    animation-name: mueveChincheta2;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    display: block;
+} 
+@keyframes mueveChincheta2 {
+    from {left: 0px;}
+    to {left: 196px;}
+}
+
+.chincheta3{
+    left: 0px;
+    animation-name: mueveChincheta3;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    display: block;
+} 
+@keyframes mueveChincheta3 {
+    from {left: 0px;}
+    to {left: 196px;}
+}
+.article3 {
+    animation-name: animArticle3;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+@keyframes animArticle3 {
+    from {transform: rotate(0);}
+    to {transform: rotate(2deg);}
 }
 
 /*Opciones responsive*/
