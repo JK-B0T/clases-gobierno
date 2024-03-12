@@ -233,7 +233,7 @@ footer > p {
 } 
 @keyframes mueveChincheta2 {
     from {left: 0px;}
-    to {left: 196px;}
+    to {left: 112px;}
 }
 
 .chincheta3{
@@ -245,7 +245,7 @@ footer > p {
 } 
 @keyframes mueveChincheta3 {
     from {left: 0px;}
-    to {left: 196px;}
+    to {left: 36px;}
 }
 .article3 {
     animation-name: animArticle3;
