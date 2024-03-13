@@ -1,0 +1,161 @@
+* {
+    color: white;
+    margin: 0;
+}
+
+body {
+    background-color: #222831;
+    margin: 4% 6%;
+}
+
+h2 {
+    font-weight: normal;
+    font-size: 1em;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+p, strong, li {
+    font-family: Arial;
+}
+strong, h2 {
+    color:rgb(255, 209, 124)
+}
+
+ul {
+    list-style-type: square;
+    margin-top: 1%;
+}
+
+a {
+    text-decoration: none;
+}
+
+#gmail, #twitter, #github, .location {
+    background-repeat: no-repeat;
+    background-position: 0% center contain;
+    background-size: 20px;
+    padding-left: 20px;
+}
+
+#skillsContainer > article > span,
+.jobTitleContainer > span,
+.educationsContainer > p,
+#awards > p,
+.location {
+    color: rgb(209, 209, 209);
+}
+
+/* header */
+
+header * {
+    margin-top: 1%;
+}
+
+header > div {
+    background-image: url(./images/perfil.png);
+    background-repeat: no-repeat;
+    background-position: 100%;
+    background-size: contain;
+    padding-bottom: 4%;
+}
+
+#linksContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap-reverse;
+    width: 33%;
+}
+#linksContainer a {
+    flex: 0 0 auto;
+}
+#gmail {
+    background-image: url(./images/Gmail.png);;
+}
+#twitter {
+    background-image: url(./images/Twitter.png);
+}
+#github {
+    background-image: url(./images/Gihub.png);
+}
+
+header > p {
+    padding: 2%;
+    background-color: #31363F;
+}
+
+/* body */
+
+.sectionTitle {
+    display: flex;
+    align-items: center;
+    margin: 2% 0;
+}
+.sectionTitle > span {
+    flex: 0 0 auto;
+    color: orange;
+}
+.divider {
+    height: 0.1em;
+    width: 100%;
+    margin-left: 10px;
+    background: gainsboro;
+}
+
+#skillsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+#skillsContainer article {
+    margin: 0 2%;
+    font-family: Arial;
+    font-size: 1em;
+    flex: 1 1 20%;
+}
+#skillsContainer div {
+    margin-top: 4%;
+}
+#skillsContainer div span {
+    display:inline-block;
+    font-size: 0.8em;
+    color: rgb(37, 75, 121);
+    background-color: #95c8cb;
+    padding: 2%;
+    margin: 1%;
+    border-radius: 3px;
+}
+#skills h2 {
+    font-size: 1.5em;
+}
+
+#workExperience article {
+    margin-bottom: 4%;
+}
+.jobTitleContainer {
+    display: flex;
+    justify-content: space-between;
+}
+.location {
+    background-image: url(./images/mapPin.png);
+}
+
+#interestsContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+#interestsContainer strong{
+    margin-right: 2%;
+    flex: none;
+    font-size: 1.3em;
+}
+
+#quotesBox {
+    border-left: 5px solid orange;
+    text-align: justify;
+    padding: 2%;
+    background-color: #31363F;
+}
+#quotesBox p{
+    margin-top: 2%;
+}
