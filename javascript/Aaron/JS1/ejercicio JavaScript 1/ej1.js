@@ -9,6 +9,22 @@
  */
 
 console.log('--------------- APARTADO 1 -----------------');
+function apartado1 (str1, str2) {
+    if (typeof str1 !== "string" || typeof str2 !== "string") {
+        console.log(`ERROR-AP1: uno o varios de los parámetros no son de tipo string.`);
+    } else {
+        if (str1.length > str2.length) {
+            console.log(`"${str1}" tiene mayor longitud que "${str2}"`);
+        } else if (str1.length < str2.length) {
+            console.log(`"${str2}" tiene mayor longitud que "${str1}"`);
+        } else {
+            console.log(`"${str1}" tiene la misma longitud que "${str2}"`);
+        }
+    }
+}
+apartado1("hombre", "mujer ");
+apartado1("Talos", "Principle");
+apartado1("número de pelos en mi cabeza: ", 0);
 
 /**
  * Apartado 2
@@ -19,6 +35,18 @@ console.log('--------------- APARTADO 1 -----------------');
  */
 
 console.log('--------------- APARTADO 2 -----------------');
+function apartado2 (numRepeticion, num) {
+    let str = ""
+    let lastNum = num;
+    for (let i = 0; i < numRepeticion; i++) {
+        num *= 2;
+        str += `${num} `;
+    }
+    console.log(str);
+}
+apartado2(3, 2);
+apartado2(10, 8);
+apartado2(5, Number.POSITIVE_INFINITY);
 
 /**
  * Apartado 3
@@ -30,6 +58,21 @@ console.log('--------------- APARTADO 2 -----------------');
  */
 
 console.log('--------------- APARTADO 3 -----------------');
+function apartado3 (str, char) {
+    str = str.toString();
+    char = char.toString();
+    const regex = new RegExp(char, "g");
+
+    if (char.length !== 1) {
+        console.log(`ERROR-AP3: el segundo parámetro no es un carácter.`);
+    } else {
+        console.log(str.match(regex).length)
+    }
+}
+apartado3("aaaaah", "a");
+apartado3("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+, "o");
+apartado3("pompa", "pompa");
 
 /**
  * Apartado 4
@@ -42,6 +85,20 @@ console.log('--------------- APARTADO 3 -----------------');
  */
 
 console.log('--------------- APARTADO 4 -----------------');
+function apartado4 (nombreProducto = "Producto genérico", precio = 100, impuesto = 21) {
+    nombreProducto = nombreProducto.toString();
+    precio = +precio;
+    impuesto = +impuesto;
+
+    if (isNaN(precio) || isNaN(impuesto)) {
+        console.log(`ERROR-AP4: uno de los parametros númericos no es válido.`);
+    } else {
+        console.log(nombreProducto, precio * (1 +(21 / 100)));
+    }
+}
+apartado4();
+apartado4("Cacahuete", 2);
+apartado4("pompa", "pompa", 95);
 
 /**
  * Apartado 5
@@ -54,4 +111,20 @@ console.log('--------------- APARTADO 4 -----------------');
  */
 
 console.log('--------------- APARTADO 5 -----------------');
+const apartado5 = (strCompleto, strTrozo) => {
+    strCompleto = strCompleto.toLowerCase();
+    strTrozo = strTrozo.toLowerCase();
+
+    if (strCompleto.includes(strTrozo)) {
+        console.log("Se encontro coincidencia");
+    } else {
+        console.log("No se encontro coincidencia");
+    }
+}
+
+apartado5("popopopopopopo", "po");
+apartado5("Macarrones", "Mc");
+apartado5("HOY SE COME FAMILIA", "hoy se come");
+
+
 
