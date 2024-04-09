@@ -33,7 +33,7 @@ function hacerTablaMultiplicar(num) {
 function hacerTablaPotenciar(num) {
     console.log(`-----Tabla de potenciar del ${num}-----`);
     for (let i = 0; i <= 10; i++) {
-        tableCells[i].innerText = `${num} x ${i} = ${i ** num}`;
+        tableCells[i].innerText = `${num} ^ ${i} = ${num ** i}`;
         console.log(`${num} ^ ${i} = ${i ** num}`);
     }
 }
@@ -41,10 +41,10 @@ function hacerTablaPotenciar(num) {
 function fillOutTable(mode, num) {
     if (mode === "M") {
         tableTitle.innerText = `Tabla de multiplicar del ${num}`;
-        hacerTablaMultiplicar(num)
+        hacerTablaMultiplicar(num);
     } else {
         tableTitle.innerText = `Tabla de potenciar del ${num}`;
-        hacerTablaPotenciar(num)
+        hacerTablaPotenciar(num);
     }
 }
 
