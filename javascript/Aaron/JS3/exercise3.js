@@ -8,6 +8,7 @@ function main () {
     const imgPreview = document.querySelector("#imgPreview");
     const input = document.querySelector("#image");
     const form = document.querySelector("#newEvent");
+    const eventsContainer = document.querySelector("#eventsContainer");
 
     const inputArray = Array.from(document.querySelectorAll("input:not([type='button'])"));
     inputArray.splice(2, 0, document.querySelector("textarea"));
@@ -57,6 +58,29 @@ function main () {
             imgPreview.classList.add("d-none");
             form.reset();
         });
+    }
+
+    function createEvent () {
+        let container = document.createElement("div");
+        container.setAttribute("class", "card");
+
+        let element = document.createElement("img");
+        element.setAttribute("class", "card-img-top");
+        element.setAttribute("src", imgPreview.src);
+        container.append(element);
+
+        element = document.createElement("div");
+        element.setAttribute("class", "card-body");
+
+        let childElement = document.createElement("h4");
+        childElement.setAttribute("class", "card-title");
+        let elementText = document.createTextNode("Nombre del evento");
+        childElement.append(elementText);
+        element.append(childElement);
+
+        childElement = document.createElement("p");
+        childElement.setAttribute("class", "card-text");
+        elementText = document.createTextNode("Descripción");
     }
 
     input.addEventListener("change", (e) => {
