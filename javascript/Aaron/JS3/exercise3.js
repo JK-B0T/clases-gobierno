@@ -10,7 +10,7 @@ function main () {
     const form = document.querySelector("#newEvent");
 
     const inputArray = Array.from(document.querySelectorAll("input:not([type='button'])"));
-    inputArray.push(document.querySelector("textarea"));
+    inputArray.splice(2, 0, document.querySelector("textarea"));
 
     form.addEventListener("submit", checkInputsValidation, false);
 
