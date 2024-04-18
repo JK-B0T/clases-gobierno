@@ -15,24 +15,47 @@ function main () {
     form.addEventListener("submit", checkInputsValidation, false);
 
     function checkInputsValidation() {
-        let isFormComplete = true;
-        inputArray.map((element) => {
-            if (element.value === null && !element.classList.contains("is-invalid")) {
-                element.classList.toggle("is-invalid");
-                if (element.classList.contains("is-valid")) {
-                    element.classList.toggle("is-valid");
-                }
-                isFormComplete = false;
-            } else if (element.value !== null && !element.classList.contains("is-valid")) {
-                if (element.classList.contains("is-invalid")) {
-                    element.classList.toggle("is-invalid");
-                }
-                element.classList.toggle("is-valid");
-            }
+        let isFormValid = true;
 
-            if (isFormComplete = true) {
-                resertform();
+        inputArray.map((element) => {
+            console.log(element, element.value);
+            if (element.value === "") {
+                if (!element.classList.contains("is-invalid")) {
+                    element.classList.add("is-invalid");
+                }
+                if (element.classList.contains("is-valid")) {
+                    element.classList.remove("is-valid");                  
+                }
+            } else {
+                if (!element.classList.contains("is-valid")) {
+                    element.classList.add("is-valid");
+                }
+                if (element.classList.contains("is-invalid")) {
+                    element.classList.remove("is-invalid");                  
+                }
+            } 
+            if (element.classList.contains("is-invalid")) {
+                isFormValid = false;
+            }  
+        });
+
+        if (isFormValid === true) {
+            resetForm ();
+            return isFormValid;
+        } else {
+            return isFormValid;
+        }
+    }
+
+    function resetForm () {
+        inputArray.map((element) => {
+            if (element.classList.contains("is-valid")) {
+                element.classList.remove("is-valid");
+            } else if (element.classList.contains("is-invalid")){
+                element.classList.remove("is-invalid");
             }
+            imgPreview.classList.add("d-none");
+            form.reset();
         });
     }
 
