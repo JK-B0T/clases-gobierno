@@ -5,46 +5,76 @@ class Estudiante {
         this.proyecto = null;
     }
 
-    trabaja () {
-        console.log("trabaja");            
+    trabaja (numHoras) {
+        if (this.proyecto !== null) {
+            this.proyecto.trabajo(numHoras, this);
+            this.horasInvertidas += numHoras;
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    cambiaProyecto () {
-        console.log("cambiaProyecto");            
+    cambiaProyecto (proyecto) {
+        this.proyecto.elimina(this.nombre);
+        this.proyecto = proyecto;  
+        this.proyecto.incluye(this.nombre);
     }
 
-    asigna () {
-        console.log("asigna");            
+    asigna (proyecto) {
+        this.proyecto.incluye(this.nombre);         
     }
 
     getNombre () {
-        console.log("getNombre");            
+        return this.nombre;          
     }
 
     getHoras () {
-        console.log("getHoras");            
+        return this.horasInvertidas;          
     }
 
     getCodigo () {
-        console.log("getCodigo");            
+        return this.proyecto.getCodigo();             
     }
 }
 
 class Coordinador extends Estudiante {
-    constructor (especialidad = comodín) {
+    constructor (especialidad = "Comodín") {
+        super(Estudiante(nombre));
         this.especialidad = especialidad;
     }
 
     trabaja () {
-        console.log("trabaja");            
+        if (this.proyecto !== null) {
+            this.proyecto.coordina(numHoras);
+            this.horasInvertidas += numHoras;
+            return true;
+        } else {
+            return false;
+        }         
     }
 
-    cambiaProyecto () {
-        console.log("cambiaProyecto");            
+    cambiaProyecto (coordinador) {
+        if (this.proyecto !== null && coordinador.proyecto !== null) {
+            projectoTemp = coordinador.proyecto;
+            coordinador.proyecto = this.proyecto;
+    
+    
+            this.proyecto = projectoTemp;
+            this.proyecto.elimina(this.nombre);
+            this.proyecto = proyecto;  
+            this.proyecto.incluye(this.nombre);  
+            return true;
+        } else {
+            return false;
+        }
+      
     }
 
-    expulsa () {
-        console.log("expulsa");            
+    expulsa (estudiante) {
+        if (this.proyecto.plantilla.includes(estudiante)) {
+            this.proyecto.causaBaja(estudiante);
+        }        
     }
 }
 
@@ -59,28 +89,41 @@ class Proyecto {
 
     incluye (estudiante) {
         console.log("incluye");
-        /*Se le pasa un estudiante como parámetro
-        Recorrer el array de estudiantes
-        Si no hay espacio se imprime un error
-        Si el estudiante ya pertenece a la plantilla se imprime un error
-        Si no hay coordinador, asigna el estudiante cambiado su clase a coordinador
-        Si lo hay, añade simplemente al estudiante enviandole el mensaje asigna.
-        Si el estudiante estaba en otro proyecto, se le envia un mensaje cambioProyecto.
-
-        Si se termina añadiendo, se devuelve true, si no, false
-        */
+        if (this.plantilla.length >= this.maxEstudiantes || !this.plantilla.includes(estudiante)) {
+            return false;
+        } else if (this.plantilla.length === 0){
+            if(estudiante instanceof Coordinador) {
+                estudiante.asigna(this);
+                return true
+            } else {
+                return false;
+            }
+        } else {
+            estudiante.asigna(this);
+            return true;
+        }
     }
 
-    trabajo () {
-        console.log("trabajo");            
+    trabajo (numHoras, estudiante) {
+        if (this.plantilla.includes(estudiante)) {
+            this.horasInvertidas += numHoras;
+        } else {
+            return false;
+        }
     }
 
-    coordina () {
-        console.log("coordina");            
+    coordina (coodinador) {
+        if (this.plantilla.includes(coodinador)) {
+            this.horasInvertidas += numHoras;
+        } else {
+            return false;
+        }       
     }
 
-    consultaEstudiante () {
-        console.log("consultaEstudiante");            
+    consultaEstudiante (num) {
+        if (plantilla[num] === undefined) {
+            return null;
+        }
     }
 
     elimina () {
