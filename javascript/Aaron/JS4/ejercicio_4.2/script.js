@@ -44,7 +44,7 @@ class Coordinador extends Estudiante {
         this.especialidad = especialidad;
     }
 
-    trabaja () {
+    trabaja (numHoras) {
         if (this.proyecto !== null) {
             this.proyecto.coordina(numHoras);
             this.horasInvertidas += numHoras;
@@ -54,10 +54,12 @@ class Coordinador extends Estudiante {
         }         
     }
 
-    cambiaProyecto (nuevoProyecto) {
-        if (this.proyecto !== null && nuevoProyecto.plantilla.length !== 0) {
-            this.proyecto.cambiaCoordinador(nuevoProyecto.plantilla[0])
-            nuevoProyecto.cambiaCoordinador(this);
+    cambiaProyecto (nuevoCoordinador) {
+        if (nuevoCoordinador.proyecto !== null && this.proyecto !== null) {
+            const nuevoProyecto = nuevoCoordinador.proyecto;
+            this.proyecto.cambiaCoordinador(nuevoCoordinador);
+            this.proyecto = nuevoProyecto;
+            nuevoProyecto.plantilla[0] = this;
             return true;
         } else {
             return false;
@@ -75,14 +77,17 @@ class Proyecto {
     constructor (codigo = "A892ER", maxEstudiantes = 2, costeHora = 10.5) {
         this.codigo = codigo;
         this.horas = 0;
-        this.costeHora = costeHora;
         this.maxEstudiantes = maxEstudiantes;
         this.plantilla = [];
+        if (typeof costeHora !== "number") {
+            this.costeHora = 10.5;
+        } else {
+            this.costeHora = costeHora;
+        }
     }
 
     incluye (estudiante) {
         if (this.plantilla.length >= this.maxEstudiantes || this.plantilla.includes(estudiante)) {
-            console.log("No entra");
             return false;
         } else if (this.plantilla.length === 0){
             if(estudiante instanceof Coordinador) {
@@ -90,7 +95,6 @@ class Proyecto {
                 estudiante.asigna(this);
                 return true
             } else {
-                console.log("No Coordina");
                 return false;
             }
         } else {
@@ -103,6 +107,7 @@ class Proyecto {
     trabajo (numHoras, estudiante) {
         if (this.plantilla.includes(estudiante)) {
             this.horas += numHoras;
+            return true;
         } else {
             return false;
         }
@@ -117,10 +122,10 @@ class Proyecto {
     }
 
     consultaEstudiante (num) {
-        if (plantilla[num] === undefined) {
+        if (this.plantilla[num-1] === undefined) {
             return null;
         } else {
-            return plantilla[num];
+            return this.plantilla[num-1].getNombre();
         }
     }
 
@@ -162,7 +167,7 @@ class Proyecto {
     }
 
     getCoste () {
-        return (this.costeHora * this.horas);
+        return this.costeHora;
     }
 
     getDesarrolladores () {
@@ -178,58 +183,53 @@ class Proyecto {
     }
 
     getPlantilla () {
-        return this.plantilla;
+        if (this.plantilla.length === 0) {
+            return "No hay plantilla";
+        } else {
+            let arrayNames = [];
+            this.plantilla.map((est) => {arrayNames.push(est.getNombre())});
+            return arrayNames.toString();
+        }
     }
 }
 
-/*
-const wildProject = new Proyecto("H311DV", 5, 12.2);
+let e1 = new Estudiante("Pepe");
+let e2 = new Estudiante("Luis");
+let e3 = new Estudiante();
+let c1 = new Coordinador("Robertito", "AS del balón");
+let c2 = new Coordinador("Juanito");
+let c3 = new Coordinador();
+let p1 = new Proyecto("CCC333", 3, 20);
+let p2 = new Proyecto(undefined, 1, "Hola");
 
-const coor1 = new Coordinador("ElPepas", "Matemáticas");
-const est1 = new Estudiante("Pepi");
-const est2 = new Estudiante("Pepo");
-const est3 = new Estudiante("Pepe");
-const est4 = new Estudiante("Papo");
-const est5 = new Estudiante("Pupas");
-
-console.log(wildProject.incluye(est1));
-console.log(wildProject.incluye(coor1));
-console.log(wildProject.incluye(est1));
-console.log(wildProject.incluye(est2));
-console.log(wildProject.incluye(est3));
-console.log(wildProject.incluye(est4));
-console.log(wildProject.incluye(est5));
-
-const civilProject = new Proyecto("HVCL1M", 6, 22.2);
-
-const coor2 = new Coordinador("ElJuanxo", "Deporte");
-const est6 = new Estudiante("Johnson");
-const est7 = new Estudiante("Jimmy");
-const est8 = new Estudiante("Johny");
-
-console.log(civilProject.incluye(est2));
-console.log(civilProject.incluye(est5));
-console.log(civilProject.incluye(coor2));
-console.log(civilProject.incluye(est6));
-console.log(civilProject.incluye(est7));
-console.log(civilProject.incluye(est8));
-
-const est9 = new Coordinador("ElChepis", "Urología");
-const est10 = new Estudiante("Puchas");
-
-console.log(wildProject.getCoste());
-console.log(wildProject.getDesarrolladores());
-console.log(wildProject.getHoras());
-console.log(wildProject.getCodigo());
-console.log(wildProject.getPlantilla());
-
-console.log(wildProject.plantilla, civilProject.plantilla);
-console.log(est1.getNombre(), est1.getCodigo(), est1.trabaja(5), est1.getHoras(), wildProject.getHoras(), est1.cambiaProyecto(civilProject));
-console.log(est1.trabaja(10), est1.getHoras(), wildProject.getHoras(), civilProject.getHoras());
-console.log(wildProject.plantilla, civilProject.plantilla);
-
-console.log(coor1.cambiaProyecto(civilProject));
-console.log(coor1.expulsa(est1));
-console.log(est1.proyecto);
-*/
+console.log("Codigo proyecto 2 (tiene que dar A892ER): "+p2.getCodigo());
+console.log("Coste hora proyecto 2 (tiene que dar 10.5): "+p2.getCoste());
+console.log("Longitud de la plantilla del proyecto 2 (tiene que dar 2): "+p2.plantilla.length);
+console.log("Horas proyecto 1 (tiene que dar 0): "+p1.getHoras());
+console.log("Plantilla proyecto 1 (tiene que dar mensaje como que no hay plantilla): "+p1.getPlantilla());
+console.log("Codigo proyecto 1 (tiene que dar CCC333): "+p1.getCodigo());
+console.log("Coste hora proyecto 1 (tiene que dar 20): "+p1.getCoste());
+console.log("Numero estudiantes trabajando en proyecto 1 (tiene que dar 0): "+p1.getDesarrolladores());
+console.log("Incluir en proyecto 1 a estudiante 1 (tiene que dar false): "+p1.incluye(e1));
+console.log("Incluir en proyecto 1 a coordinador 1 (tiene que dar true): "+p1.incluye(c1));
+console.log("Incluir en proyecto 1 a estudiante 2 (tiene que dar true): "+p1.incluye(e2));
+console.log("Incluir en proyecto 1 a estudiante 3 (tiene que dar true): "+p1.incluye(e3));
+console.log("Incluir en proyecto 1 a estudiante 1 (tiene que dar false): "+p1.incluye(e1));
+console.log("Plantilla proyecto 1 (tiene que dar Robertito, Luis, Pepito Grillo): "+p1.getPlantilla());
+console.log("Causa baja estudiante 1 de proyecto 1 (tiene que dar false): "+p1.causaBaja(e1));
+console.log("Causa baja estudiante 3 de proyecto 1 (tiene que dar true): "+p1.causaBaja(e3));
+console.log("Incluir en proyecto 1 a estudiante 1 (tiene que dar true): "+p1.incluye(e1));
+console.log("Código proyecto coordinador 1 (tiene que dar CCC333): "+c1.getCodigo());
+console.log("Horas coordinador 1 (tiene que dar 0): "+c1.getHoras());
+console.log("Coordinador 1 trabaja (tiene que dar true): "+c1.trabaja(10));
+console.log("Estudiante 2 trabaja en proyecto 1 (tiene que dar true): "+p1.trabajo(10,e2));
+console.log("Horas de coordinador 1 (tiene que dar 10): "+c1.getHoras());
+console.log("Consulta Coordinador proyecto 1 (tiene que dar Robertito): "+p1.consultaEstudiante(1));
+console.log("Plantilla proyecto 1 (tiene que dar Robertito, Luis, Pepe): "+p1.getPlantilla());
+console.log("Coordinador 1 cambia proyecto con Coordinador 2 (tiene que dar false): "+c1.cambiaProyecto(c2));
+console.log("Incluir en proyecto 2 a coordinador 2 (tiene que dar true): "+p2.incluye(c2));
+console.log("Coordinador 1 cambia proyecto con Coordinador 2 (tiene que dar true): "+c1.cambiaProyecto(c2));
+console.log("plantilla proyecto 1 (tiene que dar Juanito, Luis, Pepe): "+p1.getPlantilla());
+console.log("plantilla proyecto 2 (tiene que dar Robertito): "+p2.getPlantilla());
+console.log("Coordinador causa baja proyecto 1 (tiene que dar false): "+p1.causaBaja(c1));
 
