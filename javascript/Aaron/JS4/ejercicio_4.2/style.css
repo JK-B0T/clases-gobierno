@@ -6,7 +6,7 @@
 
 .gridLayout {
     display: grid;
-    grid-template: 1fr 9fr / 2fr 8fr;
+    grid-template: 60px 1fr / minmax(120px, 2fr) 8fr;
     height: 100vh;
 }
 
@@ -28,17 +28,19 @@ header.verticalFlexContainer {
     justify-content: space-around;
 }
 
-aside.verticalFlexContainer {
-    align-items: center;
+aside {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 100px);
+    justify-content: center;
+    justify-items: center;
+    gap: 16px;
+    padding: 16px;
     overflow: scroll;
-}
-aside.verticalFlexContainer .estudiante,
-main.verticalFlexContainer article{
-    flex: none;
 }
 
 main.verticalFlexContainer {
-    padding: 16px 16px 0;
+    padding: 16px;
+    flex: none;
     overflow: scroll;
 }
 
@@ -52,15 +54,33 @@ margin-left: auto;
 
 article section {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fill, 100px);
+    justify-content: center;
     justify-items: center;
-    align-items: center;
     gap: 16px;
     padding: 8px;
 }
 
 .estudiante {
+    display: grid;
+    grid-template: 1fr 1fr / 1fr 1fr;
     width: 90px;
     height: 90px;
     border-radius: 100%;
+}
+
+.tipoEstudiante {
+    align-self: flex-end;
+    justify-self: flex-end;
+}
+.horasTrabajadas {
+    align-self: flex-end;
+    justify-self: flex-start;
+}
+.nombreEstudiante {
+    grid-column: 1 / -1;
+    justify-self: center;
+    text-align: center;
+    width: 90px;
+    border-radius: 0 0 100px 100px;
 }
