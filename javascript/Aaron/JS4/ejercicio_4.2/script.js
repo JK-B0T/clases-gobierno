@@ -1,4 +1,4 @@
-class Estudiante {
+export class Estudiante {
     constructor (nombre = "Pepito Conejo") {
         this.nombre = nombre;
         this.horasInvertidas = 0;
@@ -38,7 +38,7 @@ class Estudiante {
     }
 }
 
-class Coordinador extends Estudiante {
+export class Coordinador extends Estudiante {
     constructor (nombre, especialidad = "Comodín") {
         super(nombre);
         this.especialidad = especialidad;
@@ -73,7 +73,7 @@ class Coordinador extends Estudiante {
     }
 }
 
-class Proyecto {
+export class Proyecto {
     constructor (codigo = "A892ER", maxEstudiantes = 2, costeHora = 10.5) {
         this.codigo = codigo;
         this.horas = 0;
@@ -193,6 +193,7 @@ class Proyecto {
     }
 }
 
+/*
 let e1 = new Estudiante("Pepe");
 let e2 = new Estudiante("Luis");
 let e3 = new Estudiante();
@@ -232,4 +233,4 @@ console.log("Coordinador 1 cambia proyecto con Coordinador 2 (tiene que dar true
 console.log("plantilla proyecto 1 (tiene que dar Juanito, Luis, Pepe): "+p1.getPlantilla());
 console.log("plantilla proyecto 2 (tiene que dar Robertito): "+p2.getPlantilla());
 console.log("Coordinador causa baja proyecto 1 (tiene que dar false): "+p1.causaBaja(c1));
-
+*/

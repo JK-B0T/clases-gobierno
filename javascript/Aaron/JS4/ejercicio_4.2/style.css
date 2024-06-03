@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.gridLayout {
+    display: grid;
+    grid-template: 1fr 9fr / 2fr 8fr;
+    height: 100vh;
+}
+
+.gridLayout *{
+    border: 2px solid red;
+}
+
+.verticalFlexContainer {
+    display: flex;
+    flex-direction: column;
+    padding-top: 16px;
+    justify-content: flex-start;
+    gap: 16px;
+}
+
+header.verticalFlexContainer {
+    gap: 0;
+    padding-top: 0;
+    justify-content: space-around;
+}
+
+aside.verticalFlexContainer {
+    align-items: center;
+    overflow: scroll;
+}
+aside.verticalFlexContainer .estudiante,
+main.verticalFlexContainer article{
+    flex: none;
+}
+
+main.verticalFlexContainer {
+    padding: 16px 16px 0;
+    overflow: scroll;
+}
+
+article header {
+    display: flex;
+}
+
+.closeBtn {
+margin-left: auto;
+}
+
+article section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    justify-items: center;
+    align-items: center;
+    gap: 16px;
+    padding: 8px;
+}
+
+.estudiante {
+    width: 90px;
+    height: 90px;
+    border-radius: 100%;
+}
