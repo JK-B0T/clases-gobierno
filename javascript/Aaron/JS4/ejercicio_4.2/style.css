@@ -67,20 +67,60 @@ article section {
     width: 90px;
     height: 90px;
     border-radius: 100%;
+    background-color: antiquewhite;
 }
 
 .tipoEstudiante {
-    align-self: flex-end;
-    justify-self: flex-end;
+    position: relative;
+    left: 5px;
+    align-self: center;
+    justify-self: center;
+    font-size: 2rem;
+    border: none;
 }
 .horasTrabajadas {
     align-self: flex-end;
     justify-self: flex-start;
+    border: none;
 }
+
 .nombreEstudiante {
     grid-column: 1 / -1;
     justify-self: center;
     text-align: center;
     width: 90px;
     border-radius: 0 0 100px 100px;
+    overflow: hidden;
+}
+
+dialog {
+    margin-left: 25%;
+    align-self: center;
+}
+
+/*-----Specific selectors-----*/
+
+#nuevoEstudiante form{
+    display: grid;
+    grid-template: repeat(4, 1fr) / 1fr 1fr;
+}
+
+#nuevoCoordinador form{
+    display: grid;
+    grid-template: repeat(5, 1fr) / 1fr 1fr;
+}
+
+#nuevoProyecto form{
+    display: grid;
+    grid-template: repeat(6, 1fr) / 1fr 1fr;
+}
+
+/*-----Toggle classes-----*/
+
+.hidden {
+    display: none;
+}
+
+.ocuppyAll {
+    grid-column: 1 / -1;
 }

@@ -9,6 +9,51 @@
 </head>
 <body>
     <div class="gridLayout">
+        <dialog id="nuevoCoordinador">
+            <form>
+                <button class="ocuppyAll" type="button">X</button>
+                <span class="ocuppyAll">Nuevo Coordinador</span>
+
+                <label for="nombre">Nombre</label>
+                <input id="nombre" name="nombre"></input>
+
+                <label for="especialidad">Especialidad</label>
+                <input id="especialidad" name="especialidad"></input>
+    
+                <button class="ocuppyAll" type="submit">Crear Coordinador</button>
+            </form>
+        </dialog>
+
+        <dialog id="nuevoEstudiante">
+            <form>
+                <button class="ocuppyAll" type="button">X</button>
+                <span class="ocuppyAll">Nuevo Estudiante</span>
+
+                <label for="nombre">Nombre</label>
+                <input id="nombre" name="nombre"></input>
+    
+                <button class="ocuppyAll" type="submit">Crear Estudiante</button>
+            </form>
+        </dialog>
+
+        <dialog id="nuevoProyecto">
+            <form>
+                <button class="ocuppyAll" type="button">X</button>
+                <span class="ocuppyAll">Nuevo Proyecto</span>
+
+                <label for="codigo">Codigo</label>
+                <input id="codigo" name="codigo"></input>
+
+                <label for="maxEstudiantes">Estudiantes máximos</label>
+                <input id="maxEstudiantes" name="maxEstudiantes"></input>
+
+                <label for="costeHora">Coste por hora</label>
+                <input id="costeHora" name="costeHora"></input>
+    
+                <button class="ocuppyAll" type="submit">Crear Proyecto</button>
+            </form>
+        </dialog>
+
         <header class="verticalFlexContainer">
             <button>Nuevo Coordinador</button>
             <button>Nuevo Estudiante</button>
@@ -21,10 +66,14 @@
         <aside>
             <div class="estudiante">
                 <span class="tipoEstudiante">C</span>
-                <span class="horasTrabajadas">1322</span>
-                <span class="nombreEstudiante">Jorgito</span>
+                <span class="horasTrabajadas">123456</span>
+                <span class="nombreEstudiante">Jorgitototo</span>
             </div>
-            <div class="estudiante"></div>
+            <div class="estudiante">
+                <span class="tipoEstudiante">E</span>
+                <span class="horasTrabajadas">42</span>
+                <span class="nombreEstudiante">Pedrito</span>
+            </div>
             <div class="estudiante"></div>
             <div class="estudiante"></div>
             <div class="estudiante"></div>
