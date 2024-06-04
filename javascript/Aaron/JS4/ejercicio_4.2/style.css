@@ -63,11 +63,13 @@ article section {
 
 .estudiante {
     display: grid;
+    position: relative;
     grid-template: 1fr 1fr / 1fr 1fr;
     width: 90px;
     height: 90px;
     border-radius: 100%;
     background-color: antiquewhite;
+    cursor: pointer;
 }
 
 .tipoEstudiante {
@@ -98,6 +100,10 @@ dialog {
     align-self: center;
 }
 
+button {
+    cursor: pointer;
+}
+
 /*-----Specific selectors-----*/
 
 #nuevoEstudiante form{
@@ -123,4 +129,94 @@ dialog {
 
 .ocuppyAll {
     grid-column: 1 / -1;
+}
+
+/*-----Animations-----*/
+
+.estudiante:hover::after{
+    animation: btnEliminarOut 0.5s forwards;
+}
+.estudiante::after{
+    position: absolute;
+    content: 'X';
+    text-align: center;
+    width: 19px;
+    border-radius: 100%;
+    animation: btnEliminarIn 0.5s forwards;
+}
+.estudiante::before{
+    position: absolute;
+    content: '+';
+    text-align: center;
+    font-weight: bolder;
+    width: 19px;
+    border-radius: 100%;
+    animation: btnHorasIn 0.5s forwards;
+}
+.estudiante:hover::before{
+    animation: btnHorasOut 0.5s forwards;
+}
+
+@keyframes btnEliminarOut {
+    from {
+        background-color: rgb(255, 80, 80, 0);
+        color: rgba(0, 0, 0, 0);
+        top: 35px;
+        left: 35px;
+    }
+
+    to {
+        background-color: rgb(255, 80, 80, 1);
+        color: rgba(0, 0, 0, 1);
+        top: 0px;
+        left: 70px;
+    }
+}
+
+@keyframes btnEliminarIn {
+    from {
+        background-color: rgb(255, 80, 80, 1);
+        color: rgba(0, 0, 0, 1);
+        top: 0px;
+        left: 70px;
+    }
+
+    to {
+        background-color: rgb(255, 80, 80, 0);
+        color: rgba(0, 0, 0, 0);
+        top: 35px;
+        left: 35px;
+    }
+}
+
+@keyframes btnHorasOut {
+    from {
+        background-color: rgb(129, 104, 255, 0);
+        color: rgba(0, 0, 0, 0);
+        top: 35px;
+        right: 35px;
+    }
+
+    to {
+        background-color: rgb(129, 104, 255, 1);
+        color: rgba(0, 0, 0, 1);
+        top: 70px;
+        right: 68px;
+    }
+}
+
+@keyframes btnHorasIn {
+    from {
+        background-color: rgb(129, 104, 255, 1);
+        color: rgba(0, 0, 0, 1);
+        top: 70px;
+        right: 68px;
+    }
+
+    to {
+        background-color: rgb(129, 104, 255, 0);
+        color: rgba(0, 0, 0, 0);
+        top: 35px;
+        right: 35px;
+    }
 }
