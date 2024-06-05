@@ -170,3 +170,10 @@ button {
     opacity: 1;
     transform-origin: top right;
 }
+
+.estudiante:active::before{
+    background-color: rgb(112, 90, 222);
+}
+.estudiante:active::after{
+    background-color: rgb(221, 70, 70);
+}
