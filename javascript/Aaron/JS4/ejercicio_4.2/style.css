@@ -133,90 +133,40 @@ button {
 
 /*-----Animations-----*/
 
-.estudiante:hover::after{
-    animation: btnEliminarOut 0.5s forwards;
+.estudiante::after,
+.estudiante::before {
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    text-align: center;
+    width: 19px;
+    border-radius: 100%;
+    opacity: 0;
 }
+
 .estudiante::after{
-    position: absolute;
-    content: 'X';
-    text-align: center;
-    width: 19px;
-    border-radius: 100%;
-    animation: btnEliminarIn 0.5s forwards;
+    background-color: rgb(255, 80, 80, 1);
+    color: rgba(0, 0, 0, 1);
+    content: 'x';
+    transform: translate(35px, 35px);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    transform-origin: center;
 }
+.estudiante:hover::after{
+    transform: translate(70px, 0px);
+    opacity: 1;
+    transform-origin: top right;
+}
+
 .estudiante::before{
-    position: absolute;
+    background-color: rgb(129, 104, 255, 1);
+    color: rgba(0, 0, 0, 1);
     content: '+';
-    text-align: center;
-    font-weight: bolder;
-    width: 19px;
-    border-radius: 100%;
-    animation: btnHorasIn 0.5s forwards;
+    transform: translate(35px, 35px);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    transform-origin: center;
 }
 .estudiante:hover::before{
-    animation: btnHorasOut 0.5s forwards;
-}
-
-@keyframes btnEliminarOut {
-    from {
-        background-color: rgb(255, 80, 80, 0);
-        color: rgba(0, 0, 0, 0);
-        top: 35px;
-        left: 35px;
-    }
-
-    to {
-        background-color: rgb(255, 80, 80, 1);
-        color: rgba(0, 0, 0, 1);
-        top: 0px;
-        left: 70px;
-    }
-}
-
-@keyframes btnEliminarIn {
-    from {
-        background-color: rgb(255, 80, 80, 1);
-        color: rgba(0, 0, 0, 1);
-        top: 0px;
-        left: 70px;
-    }
-
-    to {
-        background-color: rgb(255, 80, 80, 0);
-        color: rgba(0, 0, 0, 0);
-        top: 35px;
-        left: 35px;
-    }
-}
-
-@keyframes btnHorasOut {
-    from {
-        background-color: rgb(129, 104, 255, 0);
-        color: rgba(0, 0, 0, 0);
-        top: 35px;
-        right: 35px;
-    }
-
-    to {
-        background-color: rgb(129, 104, 255, 1);
-        color: rgba(0, 0, 0, 1);
-        top: 70px;
-        right: 68px;
-    }
-}
-
-@keyframes btnHorasIn {
-    from {
-        background-color: rgb(129, 104, 255, 1);
-        color: rgba(0, 0, 0, 1);
-        top: 70px;
-        right: 68px;
-    }
-
-    to {
-        background-color: rgb(129, 104, 255, 0);
-        color: rgba(0, 0, 0, 0);
-        top: 35px;
-        right: 35px;
-    }
+    transform: translate(0px, 70px);
+    opacity: 1;
+    transform-origin: top right;
 }
