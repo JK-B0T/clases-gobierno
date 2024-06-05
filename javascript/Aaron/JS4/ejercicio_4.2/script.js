@@ -1,4 +1,4 @@
-export class Estudiante {
+class Estudiante {
     constructor (nombre = "Pepito Conejo") {
         this.nombre = nombre;
         this.horasInvertidas = 0;
@@ -38,7 +38,7 @@ export class Estudiante {
     }
 }
 
-export class Coordinador extends Estudiante {
+class Coordinador extends Estudiante {
     constructor (nombre, especialidad = "Comodín") {
         super(nombre);
         this.especialidad = especialidad;
@@ -73,7 +73,7 @@ export class Coordinador extends Estudiante {
     }
 }
 
-export class Proyecto {
+class Proyecto {
     constructor (codigo = "A892ER", maxEstudiantes = 2, costeHora = 10.5) {
         this.codigo = codigo;
         this.horas = 0;
