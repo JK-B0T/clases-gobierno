@@ -6,7 +6,7 @@
 
 .gridLayout {
     display: grid;
-    grid-template: 60px 1fr / minmax(120px, 2fr) 8fr;
+    grid-template: 50px 1fr / minmax(120px, 2fr) 8fr;
     height: 100vh;
 }
 
@@ -96,8 +96,10 @@ article section {
 }
 
 dialog {
-    margin-left: 25%;
-    align-self: center;
+    margin: 35vh auto;
+}
+dialog form * {
+    font-size: 1.2rem;
 }
 
 button {

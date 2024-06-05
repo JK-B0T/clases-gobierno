@@ -2,12 +2,31 @@ window.addEventListener("DOMContentLoaded", start, false)
 
 function start() {
     const bandeja = document.querySelector("aside");
+    const dialogList = [
+        document.getElementById("nuevoCoordinador"),
+        document.getElementById("nuevoEstudiante"),
+        document.getElementById("nuevoProyecto")
+    ];
+    const closeBtnList = Array.from(document.querySelectorAll(".closeDialogBtn"));
+    closeBtnList.forEach((btn, index) => btn.addEventListener("click", () => dialogList[index].close()));
+
+    const btnNuevoCoordinador = document.getElementById("btnNuevoCoordinador");
+    btnNuevoCoordinador.addEventListener("click", () => dialogList[0].showModal(), false);
+    const btnNuevoEstudiante = document.getElementById("btnNuevoEstudiante");
+    btnNuevoEstudiante.addEventListener("click", () => dialogList[1].showModal(), false);
+    const btnNuevoProyecto = document.getElementById("btnNuevoProyecto");
+    btnNuevoProyecto.addEventListener("click", () => dialogList[2].showModal(), false);
+
     const est = new Estudiante("Pepo");
     const cor = new Coordinador("Coco", "Cocotero");
     const pro = new Proyecto("ZXY123", 3, 10);
 
     function sumarHoras() {
         console.log("Horas añadidas");
+    }
+
+    function eliminarRenderizado(elemento) {
+        elemento.parentNode.removeChild(elemento);
     }
 
     function renderizarEstudiante(nombreTabla, estudiante, indice) {
@@ -39,7 +58,7 @@ function start() {
         btn1.setAttribute("type", "button")
         btn1.classList.add("btnElminarEstudiante");
         btn1.textContent = "X";
-        btn1.addEventListener("click", () => div.parentNode.removeChild(div), false)
+        btn1.addEventListener("click", () => eliminarRenderizado(div), false)
         div.appendChild(btn1);
 
         const btn2 = document.createElement("button");
