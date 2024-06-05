@@ -133,8 +133,8 @@ button {
 
 /*-----Animations-----*/
 
-.estudiante::after,
-.estudiante::before {
+.btnElminarEstudiante,
+.btnSumarHoras {
     font-family: Arial, Helvetica, sans-serif;
     position: absolute;
     text-align: center;
@@ -143,37 +143,35 @@ button {
     opacity: 0;
 }
 
-.estudiante::after{
+.estudiante .btnElminarEstudiante{
     background-color: rgb(255, 80, 80, 1);
     color: rgba(0, 0, 0, 1);
-    content: 'x';
     transform: translate(35px, 35px);
     transition: transform 0.5s ease, opacity 0.5s ease;
     transform-origin: center;
 }
-.estudiante:hover::after{
+.estudiante:hover .btnElminarEstudiante{
     transform: translate(70px, 0px);
     opacity: 1;
     transform-origin: top right;
 }
 
-.estudiante::before{
+.estudiante .btnSumarHoras{
     background-color: rgb(129, 104, 255, 1);
     color: rgba(0, 0, 0, 1);
-    content: '+';
     transform: translate(35px, 35px);
     transition: transform 0.5s ease, opacity 0.5s ease;
     transform-origin: center;
 }
-.estudiante:hover::before{
+.estudiante:hover .btnSumarHoras{
     transform: translate(0px, 70px);
     opacity: 1;
     transform-origin: top right;
 }
 
-.estudiante:active::before{
+.estudiante .btnSumarHoras:active{
     background-color: rgb(112, 90, 222);
 }
-.estudiante:active::after{
+.estudiante .btnElminarEstudiante:active{
     background-color: rgb(221, 70, 70);
 }
