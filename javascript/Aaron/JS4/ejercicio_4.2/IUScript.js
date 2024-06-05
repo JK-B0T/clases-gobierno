@@ -164,12 +164,4 @@ function start() {
     renderizarEstudiante("aside", est, 0);
     renderizarEstudiante("aside", est, 0);
     renderizarEstudiante("aside", cor, 1);
-
-    function renderizarCoodinador() {
-        
-    }
-
-    function renderizarCoodinador() {
-        
-    }
 }
