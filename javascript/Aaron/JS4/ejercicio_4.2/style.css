@@ -33,6 +33,7 @@ aside {
     grid-template-columns: repeat(auto-fill, 100px);
     justify-content: center;
     justify-items: center;
+    align-content: flex-start;
     gap: 16px;
     padding: 16px;
     overflow: scroll;
@@ -46,6 +47,7 @@ main.verticalFlexContainer {
 
 article header {
     display: flex;
+    cursor: grab;
 }
 
 .closeBtn {
@@ -55,6 +57,7 @@ margin-left: auto;
 article section {
     display: grid;
     grid-template-columns: repeat(auto-fill, 100px);
+    min-height: 100px;
     justify-content: center;
     justify-items: center;
     gap: 16px;
@@ -69,7 +72,7 @@ article section {
     height: 90px;
     border-radius: 100%;
     background-color: antiquewhite;
-    cursor: pointer;
+    cursor: grab;
 }
 
 .tipoEstudiante {
