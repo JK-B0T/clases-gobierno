@@ -2,12 +2,12 @@ window.addEventListener("DOMContentLoaded", start, false)
 
 function start() {
 
-    let listaProyectos = {
-        "bandeja": {
+    let listaProyectos = [
+        {
             "plantilla": [],
             "codigo": "aside",
         },
-    } 
+    ]
 
     const dialogList = [
         document.getElementById("nuevoCoordinador"),
@@ -46,20 +46,43 @@ function start() {
     }
 
     function crearEstudiante(data) {
-        const plantilla = listaProyectos.bandeja.plantilla
+        const plantilla = listaProyectos[0].plantilla
         plantilla.push(new Estudiante(data.nombre));
-        renderizarEstudiante(listaProyectos.bandeja.codigo, plantilla[plantilla.length-1], 0)
+        renderizarEstudiante(listaProyectos[0].codigo, plantilla[plantilla.length-1], 0)
     }
 
     function crearCoordinador(data) {
-        const plantilla = listaProyectos.bandeja.plantilla
+        const plantilla = listaProyectos[0].plantilla
         plantilla.push(new Coordinador(data.nombre, data.especialidad));
-        renderizarEstudiante(listaProyectos.bandeja.codigo, plantilla[plantilla.length-1], 0)
+        renderizarEstudiante(listaProyectos[0].codigo, plantilla[plantilla.length-1], 0)
     }
 
     function crearProyecto(data) {
-        listaProyectos[data.coodigo] = new Proyecto(data.coodigo, data.maxEstudiantes, data.costeHora);
-        renderizarProyecto(listaProyectos[data.coodigo], 0)
+        listaProyectos.push(new Proyecto(data.codigo, data.maxEstudiantes, data.costeHora));
+        renderizarProyecto(listaProyectos[listaProyectos.length-1], 0)
+    }
+
+    function test () {
+        const contenedor = document.querySelector("main");
+        const proyectos = Array.from(document.querySelectorAll(".proyecto"));
+
+        proyectos.forEach((proyecto) => {
+            proyecto.addEventListener("dragstart", () => {proyecto.classList.add("dragging")}, false);
+            proyecto.addEventListener("dragend", () => {proyecto.classList.remove("dragging")}, false);
+        });
+
+        function hmm(e) {
+            e.preventDefault();
+            const dragItem = document.querySelector(".dragging");
+            const siblings = Array.from(document.querySelectorAll(".proyecto:not(.dragging)"));
+
+            let nextSibling = siblings.find( sibling => {
+                return e.clientY <= sibling.offsetTop + sibling.offsetHeight / 2;
+            })
+            contenedor.insertBefore(dragItem, nextSibling);
+        }
+
+        contenedor.addEventListener("dragover", hmm, false);
     }
 
     function sumarHoras() {
@@ -75,6 +98,7 @@ function start() {
         
         const div = document.createElement("div");
         div.classList.add("estudiante");
+        div.setAttribute("draggable", "true");
 
         const span1 = document.createElement("span");
         span1.classList.add("tipoEstudiante");
@@ -123,6 +147,8 @@ function start() {
         const posicion = document.querySelector(`main article:nth-child(${indice})`);
         
         const article = document.createElement("article");
+        article.setAttribute("draggable", "true");
+        article.classList.add("proyecto");
         const header = document.createElement("header");
         const section = document.createElement("section");
         section.setAttribute("id", proyecto.getCodigo());
@@ -161,54 +187,53 @@ function start() {
 
     const est = new Estudiante("Pepo");
     const cor = new Coordinador("Coco", "Cocotero");
-    const pro1 = new Proyecto("ABC123", 3, 10);
-    const pro2 = new Proyecto("DFG456", 3, 10);
-    const pro3 = new Proyecto("HYJ789", 3, 10);
-    const pro4 = new Proyecto("KLM012", 3, 10);
-    const pro5 = new Proyecto("NOP345", 3, 10);
 
-    renderizarProyecto(pro1, 0);
-    renderizarProyecto(pro2, 1);
-    renderizarProyecto(pro3, 2);
-    renderizarProyecto(pro4, 3);
-    renderizarProyecto(pro5, 4);
+    crearProyecto({codigo: "ABC123", maxEstudiantes: 3, costeHora: 10});
+    crearProyecto({codigo: "DFG456", maxEstudiantes: 3, costeHora: 10});
+    crearProyecto({codigo: "HYJ789", maxEstudiantes: 3, costeHora: 10});
+    crearProyecto({codigo: "KLM012", maxEstudiantes: 3, costeHora: 10});
+    crearProyecto({codigo: "NOP345", maxEstudiantes: 3, costeHora: 10});
 
-    renderizarEstudiante("#"+pro1.getCodigo(), cor, 0);
-    renderizarEstudiante("#"+pro1.getCodigo(), est, 1);
-    renderizarEstudiante("#"+pro1.getCodigo(), est, 2);
-    renderizarEstudiante("#"+pro1.getCodigo(), est, 3);
+    renderizarEstudiante("#"+listaProyectos[5].getCodigo(), cor, 0);
+    renderizarEstudiante("#"+listaProyectos[5].getCodigo(), est, 1);
+    renderizarEstudiante("#"+listaProyectos[5].getCodigo(), est, 2);
+    renderizarEstudiante("#"+listaProyectos[5].getCodigo(), est, 3);
 
-    renderizarEstudiante("#"+pro2.getCodigo(), cor, 0);
-    renderizarEstudiante("#"+pro2.getCodigo(), est, 1);
-    renderizarEstudiante("#"+pro2.getCodigo(), est, 2);
-    renderizarEstudiante("#"+pro2.getCodigo(), est, 3);
-    renderizarEstudiante("#"+pro2.getCodigo(), est, 4);
-    renderizarEstudiante("#"+pro2.getCodigo(), est, 5);
-    renderizarEstudiante("#"+pro2.getCodigo(), est, 6);
+    renderizarEstudiante("#"+listaProyectos[4].getCodigo(), cor, 0);
+    renderizarEstudiante("#"+listaProyectos[4].getCodigo(), est, 1);
+    renderizarEstudiante("#"+listaProyectos[4].getCodigo(), est, 2);
+    renderizarEstudiante("#"+listaProyectos[4].getCodigo(), est, 3);
+    renderizarEstudiante("#"+listaProyectos[4].getCodigo(), est, 4);
+    renderizarEstudiante("#"+listaProyectos[4].getCodigo(), est, 5);
+    renderizarEstudiante("#"+listaProyectos[4].getCodigo(), est, 6);
 
-    renderizarEstudiante("#"+pro3.getCodigo(), cor, 0);
-    renderizarEstudiante("#"+pro3.getCodigo(), est, 1);
-    renderizarEstudiante("#"+pro3.getCodigo(), est, 2);
-    renderizarEstudiante("#"+pro3.getCodigo(), est, 3);
-    renderizarEstudiante("#"+pro3.getCodigo(), est, 4);
-    renderizarEstudiante("#"+pro3.getCodigo(), est, 5);
-    renderizarEstudiante("#"+pro3.getCodigo(), est, 6);
-    renderizarEstudiante("#"+pro3.getCodigo(), est, 7);
-    renderizarEstudiante("#"+pro3.getCodigo(), est, 8);
-    renderizarEstudiante("#"+pro3.getCodigo(), est, 9);
-    renderizarEstudiante("#"+pro3.getCodigo(), est, 10);
-    renderizarEstudiante("#"+pro3.getCodigo(), est, 11);
+    renderizarEstudiante("#"+listaProyectos[3].getCodigo(), cor, 0);
+    renderizarEstudiante("#"+listaProyectos[3].getCodigo(), est, 1);
+    renderizarEstudiante("#"+listaProyectos[3].getCodigo(), est, 2);
+    renderizarEstudiante("#"+listaProyectos[3].getCodigo(), est, 3);
+    renderizarEstudiante("#"+listaProyectos[3].getCodigo(), est, 4);
+    renderizarEstudiante("#"+listaProyectos[3].getCodigo(), est, 5);
+    renderizarEstudiante("#"+listaProyectos[3].getCodigo(), est, 6);
+    renderizarEstudiante("#"+listaProyectos[3].getCodigo(), est, 7);
+    renderizarEstudiante("#"+listaProyectos[3].getCodigo(), est, 8);
+    renderizarEstudiante("#"+listaProyectos[3].getCodigo(), est, 9);
+    renderizarEstudiante("#"+listaProyectos[3].getCodigo(), est, 10);
+    renderizarEstudiante("#"+listaProyectos[3].getCodigo(), est, 11);
 
-    renderizarEstudiante("#"+pro4.getCodigo(), cor, 0);
-    renderizarEstudiante("#"+pro4.getCodigo(), est, 1);
+    renderizarEstudiante("#"+listaProyectos[2].getCodigo(), cor, 0);
+    renderizarEstudiante("#"+listaProyectos[2].getCodigo(), est, 1);
 
-    renderizarEstudiante("aside", est, 0);
-    renderizarEstudiante("aside", est, 0);
-    renderizarEstudiante("aside", est, 0);
-    renderizarEstudiante("aside", est, 0);
-    renderizarEstudiante("aside", est, 0);
-    renderizarEstudiante("aside", est, 0);
-    renderizarEstudiante("aside", est, 0);
-    renderizarEstudiante("aside", est, 0);
-    renderizarEstudiante("aside", cor, 1);
+    crearEstudiante({nombre: "Jusep"});
+    crearCoordinador({nombre: "El Gongas", especialidad: "ganga"});
+    crearEstudiante({nombre: "JohnCos"});
+    crearEstudiante({nombre: "Shadia"});
+    crearEstudiante({nombre: "Yeipis"});
+    crearEstudiante({nombre: "James"});
+    crearEstudiante({nombre: "Aida"});
+    crearEstudiante({nombre: "Guellens"});
+    crearEstudiante({nombre: "Perrin"});
+    crearEstudiante({nombre: "Gatin"});
+    crearCoordinador({nombre: "La Bimbas", especialidad: "binbo"});
+
+    test();
 }

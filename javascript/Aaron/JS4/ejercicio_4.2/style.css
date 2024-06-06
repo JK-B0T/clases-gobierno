@@ -128,8 +128,13 @@ button {
 
 /*-----Toggle classes-----*/
 
-.hidden {
-    display: none;
+.dragging {
+    cursor: grabbing;
+    opacity: 0.4;
+}
+
+.ocuppyAll {
+    grid-column: 1 / -1;
 }
 
 .ocuppyAll {
