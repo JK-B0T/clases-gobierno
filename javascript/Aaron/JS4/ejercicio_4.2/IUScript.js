@@ -59,7 +59,8 @@ function start() {
 
     function crearProyecto(data) {
         listaProyectos.push(new Proyecto(data.codigo, data.maxEstudiantes, data.costeHora));
-        renderizarProyecto(listaProyectos[listaProyectos.length-1], 0)
+        renderizarProyecto(listaProyectos[listaProyectos.length-1], 0);
+        test();
     }
 
     function test () {
@@ -234,6 +235,4 @@ function start() {
     crearEstudiante({nombre: "Perrin"});
     crearEstudiante({nombre: "Gatin"});
     crearCoordinador({nombre: "La Bimbas", especialidad: "binbo"});
-
-    test();
 }
