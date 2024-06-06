@@ -1,7 +1,13 @@
 window.addEventListener("DOMContentLoaded", start, false) 
 
 function start() {
-    let listaProyecto = {"bandeja": document.querySelector("aside")} 
+
+    let listaProyectos = {
+        "bandeja": {
+            "plantilla": [],
+            "codigo": "aside",
+        },
+    } 
 
     const dialogList = [
         document.getElementById("nuevoCoordinador"),
@@ -11,12 +17,50 @@ function start() {
     const closeBtnList = Array.from(document.querySelectorAll(".closeDialogBtn"));
     closeBtnList.forEach((btn, index) => btn.addEventListener("click", () => dialogList[index].close()));
 
-    const btnNuevoCoordinador = document.getElementById("btnNuevoCoordinador");
-    btnNuevoCoordinador.addEventListener("click", () => dialogList[0].showModal(), false);
-    const btnNuevoEstudiante = document.getElementById("btnNuevoEstudiante");
-    btnNuevoEstudiante.addEventListener("click", () => dialogList[1].showModal(), false);
-    const btnNuevoProyecto = document.getElementById("btnNuevoProyecto");
-    btnNuevoProyecto.addEventListener("click", () => dialogList[2].showModal(), false);
+    const modalBtnList = [
+        document.getElementById("btnNuevoCoordinador"),
+        document.getElementById("btnNuevoEstudiante"),
+        document.getElementById("btnNuevoProyecto")
+    ];
+    modalBtnList.forEach((btn, index) => btn.addEventListener("click", () => dialogList[index].showModal()));
+
+    const formList = [
+        document.getElementById("nuevoCoordinador").firstElementChild,
+        document.getElementById("nuevoEstudiante").firstElementChild,
+        document.getElementById("nuevoProyecto").firstElementChild
+    ];
+    formList.forEach((form) => form.addEventListener("submit", onFormSubmit));
+
+    function onFormSubmit(e) {
+        e.preventDefault();
+        const data = new FormData(e.target);
+        const objData = Object.fromEntries(data.entries())
+
+        if (objData.hasOwnProperty("codigo")) {
+            crearProyecto(objData);
+        } else if (objData.hasOwnProperty("especialidad")) {
+            crearCoordinador(objData);
+        } else {
+            crearEstudiante(objData);
+        }
+    }
+
+    function crearEstudiante(data) {
+        const plantilla = listaProyectos.bandeja.plantilla
+        plantilla.push(new Estudiante(data.nombre));
+        renderizarEstudiante(listaProyectos.bandeja.codigo, plantilla[plantilla.length-1], 0)
+    }
+
+    function crearCoordinador(data) {
+        const plantilla = listaProyectos.bandeja.plantilla
+        plantilla.push(new Coordinador(data.nombre, data.especialidad));
+        renderizarEstudiante(listaProyectos.bandeja.codigo, plantilla[plantilla.length-1], 0)
+    }
+
+    function crearProyecto(data) {
+        listaProyectos[data.coodigo] = new Proyecto(data.coodigo, data.maxEstudiantes, data.costeHora);
+        renderizarProyecto(listaProyectos[data.coodigo], 0)
+    }
 
     function sumarHoras() {
         console.log("Horas añadidas");
@@ -34,10 +78,13 @@ function start() {
 
         const span1 = document.createElement("span");
         span1.classList.add("tipoEstudiante");
-        if (estudiante instanceof Coordinador) {
+
+        if (estudiante.hasOwnProperty("especialidad")) {
             span1.textContent = "C";
+            span1.setAttribute("style", "color: blue")
         } else {
             span1.textContent = "E";
+            span1.setAttribute("style", "color: green")
         }
         div.appendChild(span1);
         
