@@ -60,27 +60,10 @@ function start() {
     function crearProyecto(data) {
         listaProyectos.push(new Proyecto(data.codigo, data.maxEstudiantes, data.costeHora));
         renderizarProyecto(listaProyectos[listaProyectos.length-1], 0);
-        test2();
+        updateDragger();
     }
 
     function updateDragger () {
-        const contenedor = document.querySelector("main");
-
-        function placeElement(e) {
-            e.preventDefault();
-            const dragItem = document.querySelector(".dragging");
-            const siblings = Array.from(document.querySelectorAll(".proyecto:not(.dragging)"));
-
-            let nextSibling = siblings.find( sibling => {
-                return e.clientY + contenedor.scrollTop <= sibling.offsetTop + sibling.offsetHeight / 2;
-            })
-            contenedor.insertBefore(dragItem, nextSibling);
-        }
-
-        contenedor.addEventListener("dragover", placeElement, false);
-    }
-
-    function test2 () {
         const contenedor = document.querySelector("main");
         const siblings = Array.from(document.querySelectorAll(".proyecto:not(.dragging)"));
         siblings.unshift(document.querySelector("aside"));
@@ -90,8 +73,11 @@ function start() {
             const dragItem = document.querySelector(".dragging");
 
             let nextSibling = siblings.find( sibling => {
-                console.log(sibling.offsetLeft + sibling.offsetWidth);
-                return (e.clientY + contenedor.scrollTop <= sibling.offsetTop + sibling.offsetHeight) && (e.clientX <= sibling.offsetLeft + sibling.offsetWidth);
+                if (sibling.tagName === "ASIDE") {
+                    return (e.clientX <= sibling.offsetLeft + sibling.offsetWidth);
+                } else {
+                    return (e.clientY + contenedor.scrollTop <= sibling.offsetTop + sibling.offsetHeight);
+                }
             });
 
             if (dragItem.classList.contains("estudiante")) {
