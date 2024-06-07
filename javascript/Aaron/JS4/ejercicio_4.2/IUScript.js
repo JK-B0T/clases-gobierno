@@ -65,11 +65,11 @@ function start() {
 
     function updateDragger () {
         const contenedor = document.querySelector("main");
-        const siblings = Array.from(document.querySelectorAll(".proyecto:not(.dragging)"));
-        siblings.unshift(document.querySelector("aside"));
 
         function placeElement(e) {
             e.preventDefault();
+            const siblings = Array.from(document.querySelectorAll(".proyecto:not(.dragging)"));
+            siblings.unshift(document.querySelector("aside"));
             const dragItem = document.querySelector(".dragging");
 
             let nextSibling = siblings.find( sibling => {
@@ -84,18 +84,14 @@ function start() {
                 e.stopPropagation();
                 if (dragItem.firstChild.textContent === "C") {
                     if (nextSibling.tagName === "ASIDE") {
-                        console.log("heyC")
                         nextSibling.prepend(dragItem);
                     } else {
-                        console.log("suiC")
                         nextSibling.querySelector("section").prepend(dragItem);
                     }
                 } else {
                     if (nextSibling.tagName === "ASIDE") {
-                        console.log("heyE")
                         nextSibling.appendChild(dragItem);
                     } else {
-                        console.log("suiE")
                         nextSibling.querySelector("section").appendChild(dragItem);
                     }
                 }

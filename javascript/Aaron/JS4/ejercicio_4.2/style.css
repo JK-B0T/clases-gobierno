@@ -57,7 +57,7 @@ margin-left: auto;
 article section {
     display: grid;
     grid-template-columns: repeat(auto-fill, 100px);
-    min-height: 100px;
+    min-height: 110px;
     justify-content: center;
     justify-items: center;
     gap: 16px;
