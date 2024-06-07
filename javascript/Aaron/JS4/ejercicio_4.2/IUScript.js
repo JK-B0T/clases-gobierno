@@ -72,18 +72,18 @@ function start() {
             proyecto.addEventListener("dragend", () => {proyecto.classList.remove("dragging")}, false);
         });
 
-        function hmm(e) {
+        function placeElement(e) {
             e.preventDefault();
             const dragItem = document.querySelector(".dragging");
             const siblings = Array.from(document.querySelectorAll(".proyecto:not(.dragging)"));
 
             let nextSibling = siblings.find( sibling => {
-                return e.clientY <= sibling.offsetTop + sibling.offsetHeight / 2;
+                return e.clientY + contenedor.scrollTop <= sibling.offsetTop + sibling.offsetHeight / 2;
             })
             contenedor.insertBefore(dragItem, nextSibling);
         }
 
-        contenedor.addEventListener("dragover", hmm, false);
+        contenedor.addEventListener("dragover", placeElement, false);
     }
 
     /*function test () {
