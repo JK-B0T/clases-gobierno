@@ -84,14 +84,18 @@ function start() {
                 e.stopPropagation();
                 if (dragItem.firstChild.textContent === "C") {
                     if (nextSibling.tagName === "ASIDE") {
+                        //Si proyecto de coordinador tiene estudiantes, aparece mensaje de alerta para confirmar acción
+                        //Si se confirma, todos los estudiantes de proyecto se mueven a la bandeja
                         nextSibling.prepend(dragItem);
                     } else {
+                        //Si el proyecto al que se mueve ya tiene coordinador, se intercambian el proyecto o bandeja
                         nextSibling.querySelector("section").prepend(dragItem);
                     }
                 } else {
                     if (nextSibling.tagName === "ASIDE") {
                         nextSibling.appendChild(dragItem);
                     } else {
+                        //Si el proyecto alcanzo su máximo o está vacío, no ocurre nada
                         nextSibling.querySelector("section").appendChild(dragItem);
                     }
                 }
@@ -154,6 +158,7 @@ function start() {
         btn2.classList.add("btnSumarHoras");
         btn2.textContent = "+";
         btn2.addEventListener("click", sumarHoras, false)
+                //Aparece mensaje con input aparece, al aceptarse se añaden las horas puestas en el al estudiante e interfaz
         div.appendChild(btn2);
 
         if (indice === 0) {
@@ -196,6 +201,7 @@ function start() {
         btn1.classList.add("closeBtn");
         btn1.textContent = "X";
         btn1.addEventListener("click", () => eliminarRenderizado(article), false)
+        //Aparece mensaje de aviso, si se acepta se elimina proyecto y estudiantes vuelven a la bandeja
         header.appendChild(btn1);
 
         article.appendChild(header);
