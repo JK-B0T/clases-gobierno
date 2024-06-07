@@ -60,10 +60,10 @@ function start() {
     function crearProyecto(data) {
         listaProyectos.push(new Proyecto(data.codigo, data.maxEstudiantes, data.costeHora));
         renderizarProyecto(listaProyectos[listaProyectos.length-1], 0);
-        test();
+        test2();
     }
 
-    function test () {
+        function test2 () {
         const contenedor = document.querySelector("main");
         const proyectos = Array.from(document.querySelectorAll(".proyecto"));
 
@@ -85,6 +85,29 @@ function start() {
 
         contenedor.addEventListener("dragover", hmm, false);
     }
+
+    /*function test () {
+        const contenedor = document.querySelector("main");
+        const proyectos = Array.from(document.querySelectorAll(".proyecto"));
+
+        proyectos.forEach((proyecto) => {
+            proyecto.addEventListener("dragstart", () => {proyecto.classList.add("dragging")}, false);
+            proyecto.addEventListener("dragend", () => {proyecto.classList.remove("dragging")}, false);
+        });
+
+        function hmm(e) {
+            e.preventDefault();
+            const dragItem = document.querySelector(".dragging");
+            const siblings = Array.from(document.querySelectorAll(".proyecto:not(.dragging)"));
+
+            let nextSibling = siblings.find( sibling => {
+                return e.clientY <= sibling.offsetTop + sibling.offsetHeight / 2;
+            })
+            contenedor.insertBefore(dragItem, nextSibling);
+        }
+
+        contenedor.addEventListener("dragover", hmm, false);
+    }*/
 
     function sumarHoras() {
         console.log("Horas añadidas");
