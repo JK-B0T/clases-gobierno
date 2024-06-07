@@ -63,14 +63,8 @@ function start() {
         test2();
     }
 
-        function test2 () {
+    function updateDragger () {
         const contenedor = document.querySelector("main");
-        const proyectos = Array.from(document.querySelectorAll(".proyecto"));
-
-        proyectos.forEach((proyecto) => {
-            proyecto.addEventListener("dragstart", () => {proyecto.classList.add("dragging")}, false);
-            proyecto.addEventListener("dragend", () => {proyecto.classList.remove("dragging")}, false);
-        });
 
         function placeElement(e) {
             e.preventDefault();
@@ -86,6 +80,47 @@ function start() {
         contenedor.addEventListener("dragover", placeElement, false);
     }
 
+    function test2 () {
+        const contenedor = document.querySelector("main");
+        const siblings = Array.from(document.querySelectorAll(".proyecto:not(.dragging)"));
+        siblings.unshift(document.querySelector("aside"));
+
+        function placeElement(e) {
+            e.preventDefault();
+            const dragItem = document.querySelector(".dragging");
+
+            let nextSibling = siblings.find( sibling => {
+                console.log(sibling.offsetLeft + sibling.offsetWidth);
+                return (e.clientY + contenedor.scrollTop <= sibling.offsetTop + sibling.offsetHeight) && (e.clientX <= sibling.offsetLeft + sibling.offsetWidth);
+            });
+
+            if (dragItem.classList.contains("estudiante")) {
+                e.stopPropagation();
+                if (dragItem.firstChild.textContent === "C") {
+                    if (nextSibling.tagName === "ASIDE") {
+                        console.log("heyC")
+                        nextSibling.prepend(dragItem);
+                    } else {
+                        console.log("suiC")
+                        nextSibling.querySelector("section").prepend(dragItem);
+                    }
+                } else {
+                    if (nextSibling.tagName === "ASIDE") {
+                        console.log("heyE")
+                        nextSibling.appendChild(dragItem);
+                    } else {
+                        console.log("suiE")
+                        nextSibling.querySelector("section").appendChild(dragItem);
+                    }
+                }
+            } else {
+                contenedor.insertBefore(dragItem, nextSibling);
+            }
+        }
+
+        contenedor.parentNode.addEventListener("dragover", placeElement, false);
+    }
+
     function sumarHoras() {
         console.log("Horas añadidas");
     }
@@ -98,6 +133,8 @@ function start() {
         const posicion = document.querySelector(`${nombreTabla} div:nth-child(${indice})`);
         
         const div = document.createElement("div");
+        div.addEventListener("dragstart", () => {div.classList.add("dragging")}, false);
+        div.addEventListener("dragend", () => {div.classList.remove("dragging")}, false);
         div.classList.add("estudiante");
         div.setAttribute("draggable", "true");
 
@@ -148,9 +185,12 @@ function start() {
         const posicion = document.querySelector(`main article:nth-child(${indice})`);
         
         const article = document.createElement("article");
-        article.setAttribute("draggable", "true");
         article.classList.add("proyecto");
         const header = document.createElement("header");
+        header.setAttribute("draggable", "true");
+        header.classList.add("barra");
+        header.addEventListener("dragstart", () => {article.classList.add("dragging")}, false);
+        header.addEventListener("dragend", () => {article.classList.remove("dragging")}, false);
         const section = document.createElement("section");
         section.setAttribute("id", proyecto.getCodigo());
 

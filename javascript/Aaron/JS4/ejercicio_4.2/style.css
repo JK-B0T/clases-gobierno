@@ -6,7 +6,7 @@
 
 .gridLayout {
     display: grid;
-    grid-template: 50px 1fr / minmax(120px, 2fr) 8fr;
+    grid-template: 50px 1fr / minmax(140px, 2fr) 8fr;
     height: 100vh;
 }
 
