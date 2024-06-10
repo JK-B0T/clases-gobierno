@@ -1,0 +1,76 @@
+.gridLayout {
+    display: grid;
+    grid-template: 50px 1fr / minmax(140px, 2fr) 8fr;
+    height: 100vh;
+}
+
+.gridLayout *{
+    border: 2px solid red;
+}
+
+.verticalFlexContainer {
+    display: flex;
+    flex-direction: column;
+    padding-top: 16px;
+    justify-content: flex-start;
+    gap: 16px;
+}
+
+header.verticalFlexContainer {
+    gap: 0;
+    padding-top: 0;
+    justify-content: space-around;
+}
+
+aside {
+    overflow: scroll;
+}
+.gridLayout aside section{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 100px);
+    justify-content: center;
+    justify-items: center;
+    align-content: flex-start;
+    gap: 16px;
+    padding: 16px;
+    border: 0px;
+}
+
+main.verticalFlexContainer {
+    padding: 16px;
+    flex: none;
+    overflow: scroll;
+}
+
+.closeBtn {
+margin-left: auto;
+}
+
+dialog {
+    margin: 35vh auto;
+}
+dialog form * {
+    font-size: 1.2rem;
+}
+
+.ocuppyAll {
+    grid-column: 1 / -1;
+}
+
+
+/*-----Specific selectors-----*/
+
+#nuevoEstudiante form{
+    display: grid;
+    grid-template: repeat(4, 1fr) / 1fr 1fr;
+}
+
+#nuevoCoordinador form{
+    display: grid;
+    grid-template: repeat(5, 1fr) / 1fr 1fr;
+}
+
+#nuevoProyecto form{
+    display: grid;
+    grid-template: repeat(6, 1fr) / 1fr 1fr;
+}

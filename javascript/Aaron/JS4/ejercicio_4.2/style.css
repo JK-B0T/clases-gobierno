@@ -4,47 +4,6 @@
     box-sizing: border-box;
 }
 
-.gridLayout {
-    display: grid;
-    grid-template: 50px 1fr / minmax(140px, 2fr) 8fr;
-    height: 100vh;
-}
-
-.gridLayout *{
-    border: 2px solid red;
-}
-
-.verticalFlexContainer {
-    display: flex;
-    flex-direction: column;
-    padding-top: 16px;
-    justify-content: flex-start;
-    gap: 16px;
-}
-
-header.verticalFlexContainer {
-    gap: 0;
-    padding-top: 0;
-    justify-content: space-around;
-}
-
-aside {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 100px);
-    justify-content: center;
-    justify-items: center;
-    align-content: flex-start;
-    gap: 16px;
-    padding: 16px;
-    overflow: scroll;
-}
-
-main.verticalFlexContainer {
-    padding: 16px;
-    flex: none;
-    overflow: scroll;
-}
-
 article header {
     display: flex;
     cursor: grab;
@@ -74,6 +33,12 @@ article section {
     background-color: antiquewhite;
     cursor: grab;
 }
+/*.estudiante *:not(button) {
+    pointer-events: none;
+}
+.estudiante *:not(button) {
+    pointer-events: none;
+}*/
 
 .tipoEstudiante {
     position: relative;
@@ -98,32 +63,8 @@ article section {
     overflow: hidden;
 }
 
-dialog {
-    margin: 35vh auto;
-}
-dialog form * {
-    font-size: 1.2rem;
-}
-
 button {
     cursor: pointer;
-}
-
-/*-----Specific selectors-----*/
-
-#nuevoEstudiante form{
-    display: grid;
-    grid-template: repeat(4, 1fr) / 1fr 1fr;
-}
-
-#nuevoCoordinador form{
-    display: grid;
-    grid-template: repeat(5, 1fr) / 1fr 1fr;
-}
-
-#nuevoProyecto form{
-    display: grid;
-    grid-template: repeat(6, 1fr) / 1fr 1fr;
 }
 
 /*-----Toggle classes-----*/
@@ -133,18 +74,16 @@ button {
     opacity: 0.4;
 }
 
-.ocuppyAll {
-    grid-column: 1 / -1;
-}
-
-.ocuppyAll {
-    grid-column: 1 / -1;
-}
-
 /*-----Animations-----*/
 article header:active,
 .estudiante:active{
     cursor: grabbing;
+}
+.estudiante .btnSumarHoras:active{
+    background-color: rgb(112, 90, 222);
+}
+.estudiante .btnElminarEstudiante:active{
+    background-color: rgb(221, 70, 70);
 }
 
 .btnElminarEstudiante,
@@ -155,37 +94,38 @@ article header:active,
     width: 19px;
     border-radius: 100%;
     opacity: 0;
-}
-
-.estudiante .btnElminarEstudiante{
-    background-color: rgb(255, 80, 80, 1);
+    visibility: hidden;
     color: rgba(0, 0, 0, 1);
     transform: translate(35px, 35px);
-    transition: transform 0.5s ease, opacity 0.5s ease;
+    transition: transform 0.5s ease, opacity 0.5s ease, visibility 0s 0.5s;
     transform-origin: center;
+}
+.estudiante .btnElminarEstudiante{
+    background-color: rgb(255, 80, 80, 1);
+}
+.estudiante .btnSumarHoras{
+    background-color: rgb(129, 104, 255, 1);
+}
+
+.estudiante:hover .btnSumarHoras,
+.estudiante:hover .btnElminarEstudiante{
+    opacity: 1;
+    visibility: visible;
+    transform-origin: top right;
+    transition: transform 0.5s ease, opacity 0.5s ease, visibility 0s;
 }
 .estudiante:hover .btnElminarEstudiante{
     transform: translate(70px, 0px);
-    opacity: 1;
-    transform-origin: top right;
-}
-
-.estudiante .btnSumarHoras{
-    background-color: rgb(129, 104, 255, 1);
-    color: rgba(0, 0, 0, 1);
-    transform: translate(35px, 35px);
-    transition: transform 0.5s ease, opacity 0.5s ease;
-    transform-origin: center;
 }
 .estudiante:hover .btnSumarHoras{
     transform: translate(0px, 70px);
-    opacity: 1;
-    transform-origin: top right;
 }
 
-.estudiante .btnSumarHoras:active{
-    background-color: rgb(112, 90, 222);
+.estudiante *:not(button),
+.proyecto span,
+.proyecto section {
+    pointer-events: none;
 }
-.estudiante .btnElminarEstudiante:active{
-    background-color: rgb(221, 70, 70);
+.estudiante {
+    pointer-events: all;
 }
