@@ -3,14 +3,7 @@ window.addEventListener("DOMContentLoaded", start, false)
 function start() {
 
     let listaProyectos = {
-        "bandeja": {
-            "plantilla": [],
-            "codigo": "bandeja",
-            "incluye": function (estudiante) {
-                this.plantilla.push(estudiante);
-                estudiante.asigna(this);
-            }
-        },
+        "bandeja": new Proyecto("bandeja", 100, 0),
     }
 
     let listaEstudiantes = {
@@ -54,19 +47,17 @@ function start() {
     }
 
     function crearEstudiante(data) {
-        const plantilla = listaProyectos.bandeja.plantilla;
         const estudiante = new Estudiante(data.nombre);
-        plantilla.push(estudiante);
+        listaProyectos.bandeja.incluye(estudiante);
         listaEstudiantes[data.nombre] = estudiante;
-        renderizarEstudiante(listaProyectos.bandeja.codigo, plantilla[plantilla.length-1], 0)
+        renderizarEstudiante(listaProyectos.bandeja.codigo, estudiante, 0)
     }
 
     function crearCoordinador(data) {
-        const plantilla = listaProyectos.bandeja.plantilla;
         const coordinador = new Coordinador(data.nombre, data.especialidad);
-        plantilla.push(coordinador);
+        listaProyectos.bandeja.incluye(coordinador);
         listaEstudiantes[data.nombre] = coordinador;
-        renderizarEstudiante(listaProyectos.bandeja.codigo, plantilla[plantilla.length-1], 0)
+        renderizarEstudiante(listaProyectos.bandeja.codigo, coordinador, 0)
     }
 
     function crearProyecto(data) {
@@ -81,25 +72,34 @@ function start() {
 
         if (draggable.classList.contains("estudiante")) {
             const estudiante = listaEstudiantes[draggable.querySelector(".nombreEstudiante").textContent];
-            console.log(estudiante);
 
-            if (element.classList.contains("estudiante")) {
+            if (element.classList.contains("estudiante") || element.classList.contains("proyecto")) {
                 e.stopPropagation();
-                const proyecto = listaProyectos[element.parentNode.getAttribute("id")];
-                console.log(proyecto.getCodigo(), estudiante.getNombre())
 
-                if (proyecto.incluye(estudiante)) {
-                    element.parentNode.insertBefore(draggable, element.nextSibling);
-                }
-            } else if (element.classList.contains("proyecto")) {
-                e.stopPropagation();
-                const proyecto = listaProyectos[element.querySelector("section").getAttribute("id")];
-                console.log(proyecto.codigo, estudiante.getNombre())
+                if (element.classList.contains("estudiante")) {
+                    const proyecto = listaProyectos[element.parentNode.getAttribute("id")];
+                    const container = element.parentNode;
 
-                if (proyecto.incluye(estudiante)) {
-                    element.querySelector("section").appendChild(draggable);
+                    if (estudiante.cambiaProyecto(proyecto)) {
+                        container.insertBefore(draggable, element.nextSibling);
+                    }
+                } else if (element.classList.contains("coordinador")) {
+                    const coordinador = listaProyectos[element.querySelector("section").getAttribute("id")];
+                    const container = element.querySelector("section");
+
+                    if (estudiante.cambiaProyecto(proyecto)) {
+                        container.appendChild(draggable);
+                    }
+                } else {
+                    const proyecto = listaProyectos[element.querySelector("section").getAttribute("id")];
+                    const container = element.querySelector("section");
+
+                    if (estudiante.cambiaProyecto(proyecto)) {
+                        container.appendChild(draggable);
+                    }
                 }
             }
+
         } else {
             if (element.classList.contains("proyecto")) {
                 e.stopPropagation();
@@ -230,17 +230,17 @@ function start() {
     crearProyecto({codigo: "DDD444", maxEstudiantes: 3, costeHora: 10});
     crearProyecto({codigo: "EEE555", maxEstudiantes: 3, costeHora: 10});
 
-    crearEstudiante({nombre: "Jusep"});
-    crearCoordinador({nombre: "El Gongas", especialidad: "ganga"});
-    crearEstudiante({nombre: "JohnCos"});
-    crearEstudiante({nombre: "Shadia"});
-    crearEstudiante({nombre: "Yeipis"});
-    crearEstudiante({nombre: "James"});
-    crearEstudiante({nombre: "Aida"});
-    crearEstudiante({nombre: "Guellens"});
-    crearEstudiante({nombre: "Perrin"});
-    crearEstudiante({nombre: "Gatin"});
-    crearCoordinador({nombre: "La Bimbas", especialidad: "binbo"});
+    crearEstudiante({nombre: "1"});
+    crearCoordinador({nombre: "2", especialidad: "ganga"});
+    crearEstudiante({nombre: "3"});
+    crearEstudiante({nombre: "4"});
+    crearEstudiante({nombre: "5"});
+    crearEstudiante({nombre: "6"});
+    crearEstudiante({nombre: "7"});
+    crearEstudiante({nombre: "8"});
+    crearEstudiante({nombre: "9"});
+    crearEstudiante({nombre: "10"});
+    crearCoordinador({nombre: "11", especialidad: "binbo"});
 
     /*
     renderizarEstudiante("EEE555", cor, 0);

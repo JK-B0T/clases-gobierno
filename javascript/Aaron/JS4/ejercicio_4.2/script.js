@@ -19,6 +19,8 @@ class Estudiante {
         this.proyecto.elimina(this.nombre);
         this.proyecto = proyecto;  
         this.proyecto.incluye(this);
+        console.log("RDRFRF")
+        return true;
     }
 
     asigna (proyecto) {
