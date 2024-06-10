@@ -5,8 +5,16 @@ function start() {
     let listaProyectos = {
         "bandeja": {
             "plantilla": [],
-            "codigo": "aside section",
+            "codigo": "bandeja",
+            "incluye": function (estudiante) {
+                this.plantilla.push(estudiante);
+                estudiante.asigna(this);
+            }
         },
+    }
+
+    let listaEstudiantes = {
+
     }
 
     const dialogList = [
@@ -46,14 +54,18 @@ function start() {
     }
 
     function crearEstudiante(data) {
-        const plantilla = listaProyectos.bandeja.plantilla
-        plantilla.push(new Estudiante(data.nombre));
+        const plantilla = listaProyectos.bandeja.plantilla;
+        const estudiante = new Estudiante(data.nombre);
+        plantilla.push(estudiante);
+        listaEstudiantes[data.nombre] = estudiante;
         renderizarEstudiante(listaProyectos.bandeja.codigo, plantilla[plantilla.length-1], 0)
     }
 
     function crearCoordinador(data) {
-        const plantilla = listaProyectos.bandeja.plantilla
-        plantilla.push(new Coordinador(data.nombre, data.especialidad));
+        const plantilla = listaProyectos.bandeja.plantilla;
+        const coordinador = new Coordinador(data.nombre, data.especialidad);
+        plantilla.push(coordinador);
+        listaEstudiantes[data.nombre] = coordinador;
         renderizarEstudiante(listaProyectos.bandeja.codigo, plantilla[plantilla.length-1], 0)
     }
 
@@ -67,20 +79,26 @@ function start() {
         const draggable = document.querySelector(".dragging");
         const element = e.target;
 
-        function comprobarMovimiento (estudiante, codProyecto) {
-            proyecto = 3;
-        }
-
-        console.log(element)
         if (draggable.classList.contains("estudiante")) {
+            const estudiante = listaEstudiantes[draggable.querySelector(".nombreEstudiante").textContent];
+            console.log(estudiante);
+
             if (element.classList.contains("estudiante")) {
                 e.stopPropagation();
-                element.parentNode.insertBefore(draggable, element.nextSibling);
-                //comprobarMovimiento(draggable, element.parentNode);
+                const proyecto = listaProyectos[element.parentNode.getAttribute("id")];
+                console.log(proyecto.getCodigo(), estudiante.getNombre())
+
+                if (proyecto.incluye(estudiante)) {
+                    element.parentNode.insertBefore(draggable, element.nextSibling);
+                }
             } else if (element.classList.contains("proyecto")) {
                 e.stopPropagation();
-                element.querySelector("section").appendChild(draggable);
-                //comprobarMovimiento(draggable, element.querySelector("section"));
+                const proyecto = listaProyectos[element.querySelector("section").getAttribute("id")];
+                console.log(proyecto.codigo, estudiante.getNombre())
+
+                if (proyecto.incluye(estudiante)) {
+                    element.querySelector("section").appendChild(draggable);
+                }
             }
         } else {
             if (element.classList.contains("proyecto")) {
@@ -101,9 +119,8 @@ function start() {
         elemento.parentNode.removeChild(elemento);
     }
 
-    function renderizarEstudiante(nombreTabla, estudiante, indice) {
-        console.log(nombreTabla, document.querySelector(`${nombreTabla} div:nth-child(${indice})`))
-        const posicion = document.querySelector(`${nombreTabla} div:nth-child(${indice})`);
+    function renderizarEstudiante(nombreTabla = "bandeja", estudiante, indice) {
+        const posicion = document.querySelector(`#${nombreTabla} div:nth-child(${indice})`);
         
         const div = document.createElement("div");
         div.addEventListener("dragstart", () => {div.classList.add("dragging")}, false);
@@ -150,7 +167,7 @@ function start() {
         div.appendChild(btn2);
 
         if (indice === 0) {
-            document.querySelector(`${nombreTabla}`).prepend(div);
+            document.querySelector(`#${nombreTabla}`).prepend(div);
         } else {
             posicion.insertAdjacentElement("afterend", div);
         }
@@ -213,35 +230,6 @@ function start() {
     crearProyecto({codigo: "DDD444", maxEstudiantes: 3, costeHora: 10});
     crearProyecto({codigo: "EEE555", maxEstudiantes: 3, costeHora: 10});
 
-    renderizarEstudiante("#"+"EEE555", cor, 0);
-    renderizarEstudiante("#"+"EEE555", est, 1);
-    renderizarEstudiante("#"+"EEE555", est, 2);
-    renderizarEstudiante("#"+"EEE555", est, 3);
-
-    renderizarEstudiante("#"+"DDD444", cor, 0);
-    renderizarEstudiante("#"+"DDD444", est, 1);
-    renderizarEstudiante("#"+"DDD444", est, 2);
-    renderizarEstudiante("#"+"DDD444", est, 3);
-    renderizarEstudiante("#"+"DDD444", est, 4);
-    renderizarEstudiante("#"+"DDD444", est, 5);
-    renderizarEstudiante("#"+"DDD444", est, 6);
-
-    renderizarEstudiante("#"+"CCC333", cor, 0);
-    renderizarEstudiante("#"+"CCC333", est, 1);
-    renderizarEstudiante("#"+"CCC333", est, 2);
-    renderizarEstudiante("#"+"CCC333", est, 3);
-    renderizarEstudiante("#"+"CCC333", est, 4);
-    renderizarEstudiante("#"+"CCC333", est, 5);
-    renderizarEstudiante("#"+"CCC333", est, 6);
-    renderizarEstudiante("#"+"CCC333", est, 7);
-    renderizarEstudiante("#"+"CCC333", est, 8);
-    renderizarEstudiante("#"+"CCC333", est, 9);
-    renderizarEstudiante("#"+"CCC333", est, 10);
-    renderizarEstudiante("#"+"CCC333", est, 11);
-
-    renderizarEstudiante("#"+"BBB222", cor, 0);
-    renderizarEstudiante("#"+"BBB222", est, 1);
-
     crearEstudiante({nombre: "Jusep"});
     crearCoordinador({nombre: "El Gongas", especialidad: "ganga"});
     crearEstudiante({nombre: "JohnCos"});
@@ -253,4 +241,35 @@ function start() {
     crearEstudiante({nombre: "Perrin"});
     crearEstudiante({nombre: "Gatin"});
     crearCoordinador({nombre: "La Bimbas", especialidad: "binbo"});
+
+    /*
+    renderizarEstudiante("EEE555", cor, 0);
+    renderizarEstudiante("EEE555", est, 1);
+    renderizarEstudiante("EEE555", est, 2);
+    renderizarEstudiante("EEE555", est, 3);
+
+    renderizarEstudiante("DDD444", cor, 0);
+    renderizarEstudiante("DDD444", est, 1);
+    renderizarEstudiante("DDD444", est, 2);
+    renderizarEstudiante("DDD444", est, 3);
+    renderizarEstudiante("DDD444", est, 4);
+    renderizarEstudiante("DDD444", est, 5);
+    renderizarEstudiante("DDD444", est, 6);
+
+    renderizarEstudiante("CCC333", cor, 0);
+    renderizarEstudiante("CCC333", est, 1);
+    renderizarEstudiante("CCC333", est, 2);
+    renderizarEstudiante("CCC333", est, 3);
+    renderizarEstudiante("CCC333", est, 4);
+    renderizarEstudiante("CCC333", est, 5);
+    renderizarEstudiante("CCC333", est, 6);
+    renderizarEstudiante("CCC333", est, 7);
+    renderizarEstudiante("CCC333", est, 8);
+    renderizarEstudiante("CCC333", est, 9);
+    renderizarEstudiante("CCC333", est, 10);
+    renderizarEstudiante("CCC333", est, 11);
+
+    renderizarEstudiante("BBB222", cor, 0);
+    renderizarEstudiante("BBB222", est, 1);
+    */
 }
