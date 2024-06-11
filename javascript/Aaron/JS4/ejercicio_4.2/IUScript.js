@@ -65,8 +65,69 @@ function start() {
         renderizarProyecto(listaProyectos[data.codigo], 0);
     }
 
+    function comprobar (e) {
+        const draggable = document.querySelector(".dragging");
+        const dropZone = e.target;
+
+        if (draggable.classList.contains("proyecto")) {
+            if (dropZone.classList.contains("proyecto") || dropZone.tagName === "HEADER") {
+                if (dropZone.tagName === "HEADER") {
+                    dropZone.parentNode.parentNode.insertBefore(draggable, dropZone.parentNode.nextSibling);
+                } else {
+                    dropZone.parentNode.insertBefore(draggable, dropZone.nextSibling);
+                }
+            } else if (dropZone.tagName === "MAIN") {
+                dropZone.prepend(draggable);
+            }
+            e.stopPropagation();
+        } else {
+            if (draggable.classList.contains("coordinador")) {
+                //Si ya hay coordinador, se intercambian posiciones
+                //Si se saca el coordinador, se sacan todos los estudiantes
+                const oldProject = listaProyectos[draggable.parentNode.getAttribute("id")];
+                const oldDropZone = draggable.parentNode;
+                let newProject;
+                let newDropZone;
+
+                if (dropZone.classList.contains("proyecto")) {
+                    newDropZone = dropZone.querySelector("section");
+                    console.log(newDropZone.tagName)
+                    newProject = listaProyectos[newDropZone.getAttribute("id")];
+                } else if (dropZone.classList.contains("estudiante")) {
+                    newDropZone = dropZone.parentNode;
+                    newProject = listaProyectos[newDropZone.getAttribute("id")];
+                }
+
+                if (newProject.plantilla.length === 0) {
+                    if (oldProject.plantilla.length > 1 && oldProject.getCodigo() !== "bandeja") {
+                        for (estudiante of oldProject.plantilla) {
+                            estudiante.cambiaProyecto(listaProyectos["bandeja"]);
+                            document.getElementById("bandeja").append(document.getElementById(estudiante.getNombre()));
+                        }
+                    } else {
+                        console.log(newDropZone.tagName)
+                        newProject.incluye(oldProject.plantilla[0]);
+                        newDropZone.prepend(draggable);
+                    }
+                }
+                dropZone.querySelector("section").prepend(draggable);
+                dropZone.parentNode.prepend(draggable);
+                e.stopPropagation();
+            } else {
+                //Si no hay coordinador, no se hace nada
+                //Si hay demasiados estudiantes, no se hace nada
+                if (dropZone.classList.contains("proyecto")) {
+                    dropZone.querySelector("section").append(draggable);
+                } else if (dropZone.classList.contains("estudiante")) {
+                    dropZone.parentNode.insertBefore(draggable, dropZone.nextSibling);
+                }
+                e.stopPropagation();
+            }
+        }
+    }
+
     function updateDragger (e) {
-        e.preventDefault();
+        /*e.preventDefault();
         const draggable = document.querySelector(".dragging");
         const element = e.target;
 
@@ -76,19 +137,24 @@ function start() {
             if (element.classList.contains("estudiante") || element.classList.contains("proyecto")) {
                 e.stopPropagation();
 
-                if (element.classList.contains("estudiante")) {
+                if (element.classList.contains("coordinador")) {
+                    const proyecto = listaProyectos[element.querySelector("section").getAttribute("id")];
+                    const coordinador = proyecto.plantillla[0];
+                    const container = element.querySelector("section");
+
+                    if (coordinador) {
+                        container.appendChild(draggable);
+                        
+                    }
+                    if (estudiante.cambiaProyecto(proyecto)) {
+                        container.appendChild(draggable);
+                    }
+                } else if (element.classList.contains("estudiante")) {
                     const proyecto = listaProyectos[element.parentNode.getAttribute("id")];
                     const container = element.parentNode;
 
                     if (estudiante.cambiaProyecto(proyecto)) {
                         container.insertBefore(draggable, element.nextSibling);
-                    }
-                } else if (element.classList.contains("coordinador")) {
-                    const coordinador = listaProyectos[element.querySelector("section").getAttribute("id")];
-                    const container = element.querySelector("section");
-
-                    if (estudiante.cambiaProyecto(proyecto)) {
-                        container.appendChild(draggable);
                     }
                 } else {
                     const proyecto = listaProyectos[element.querySelector("section").getAttribute("id")];
@@ -108,7 +174,7 @@ function start() {
                 e.stopPropagation();
                 element.appendChild(draggable);
             }
-        }
+        }*/
     }
 
     function sumarHoras() {
@@ -124,8 +190,11 @@ function start() {
         
         const div = document.createElement("div");
         div.addEventListener("dragstart", () => {div.classList.add("dragging")}, false);
-        div.addEventListener("dragend", () => {div.classList.remove("dragging")}, false);
+        div.addEventListener("dragend", () => {div.classList.remove("dragging");}, false);
+        div.addEventListener("dragover", (e) => {e.preventDefault()}, false);
+        div.addEventListener("drop", (e) => {comprobar(e);}, false);
         div.classList.add("estudiante");
+        div.setAttribute("id", estudiante.getNombre());
         div.setAttribute("draggable", "true");
 
         const span1 = document.createElement("span");
@@ -182,7 +251,9 @@ function start() {
         header.setAttribute("draggable", "true");
         header.classList.add("barra");
         header.addEventListener("dragstart", () => {article.classList.add("dragging")}, false);
-        header.addEventListener("dragend", () => {article.classList.remove("dragging")}, false);
+        header.addEventListener("dragend", () => {article.classList.remove("dragging");}, false);
+        article.addEventListener("dragover", (e) => {e.preventDefault()}, false);
+        article.addEventListener("drop", (e) => {comprobar(e)}, false);
         const section = document.createElement("section");
         section.setAttribute("id", proyecto.getCodigo());
 
@@ -219,7 +290,10 @@ function start() {
         }
     }
 
-    window.addEventListener("dragover", updateDragger, false);
+    document.querySelector("main").addEventListener("drop", (e) => {comprobar(e);}, false);
+    document.querySelector("main").addEventListener("dragover", (e) => {e.preventDefault()}, false);
+    document.querySelector("aside").addEventListener("drop", (e) => {comprobar(e);}, false);
+    document.querySelector("aside").addEventListener("dragover", (e) => {e.preventDefault()}, false);
 
     const est = new Estudiante("Pepo");
     const cor = new Coordinador("Coco", "Cocotero");
@@ -230,17 +304,17 @@ function start() {
     crearProyecto({codigo: "DDD444", maxEstudiantes: 3, costeHora: 10});
     crearProyecto({codigo: "EEE555", maxEstudiantes: 3, costeHora: 10});
 
-    crearEstudiante({nombre: "1"});
-    crearCoordinador({nombre: "2", especialidad: "ganga"});
-    crearEstudiante({nombre: "3"});
-    crearEstudiante({nombre: "4"});
-    crearEstudiante({nombre: "5"});
-    crearEstudiante({nombre: "6"});
-    crearEstudiante({nombre: "7"});
-    crearEstudiante({nombre: "8"});
-    crearEstudiante({nombre: "9"});
-    crearEstudiante({nombre: "10"});
-    crearCoordinador({nombre: "11", especialidad: "binbo"});
+    crearEstudiante({nombre: "11K"});
+    crearCoordinador({nombre: "10J", especialidad: "ganga"});
+    crearEstudiante({nombre: "9I"});
+    crearEstudiante({nombre: "8H"});
+    crearEstudiante({nombre: "7G"});
+    crearEstudiante({nombre: "6F"});
+    crearEstudiante({nombre: "5E"});
+    crearEstudiante({nombre: "4D"});
+    crearEstudiante({nombre: "3C"});
+    crearEstudiante({nombre: "2B"});
+    crearCoordinador({nombre: "1A", especialidad: "binbo"});
 
     /*
     renderizarEstudiante("EEE555", cor, 0);
