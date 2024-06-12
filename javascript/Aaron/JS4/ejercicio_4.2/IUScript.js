@@ -98,7 +98,7 @@ function start() {
                 if (oldProject.plantilla.length > 1 && oldProject.getCodigo() !== "bandeja") {
                     for (let i = oldProject.plantilla.length-1; i >= 0 ; i--) {
                         if (oldProject.plantilla[i] instanceof Coordinador) {
-                            document.querySelector("#bandeja").prepend(document.getElementById(oldProject.plantilla[i].getNombre()));
+                            newDropZone.prepend(document.getElementById(oldProject.plantilla[i].getNombre()));
                         } else {
                             document.querySelector("#bandeja").append(document.getElementById(oldProject.plantilla[i].getNombre()));
                         }
