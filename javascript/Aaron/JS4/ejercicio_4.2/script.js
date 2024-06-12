@@ -55,12 +55,13 @@ class Coordinador extends Estudiante {
         }         
     }
 
-    cambiaProyecto (nuevoCoordinador) {
-        if (nuevoCoordinador.proyecto !== null && this.proyecto !== null) {
-            const nuevoProyecto = nuevoCoordinador.proyecto;
-            this.proyecto.cambiaCoordinador(nuevoCoordinador);
+    cambiaProyecto (nuevoProyecto) {
+        if (nuevoProyecto.variosCoordinadores || !nuevoProyecto.plantilla[0]) {
             this.proyecto = nuevoProyecto;
-            nuevoProyecto.plantilla[0] = this;
+            nuevoProyecto.plantilla.unshift(this);
+            return true;
+        } else if(nuevoProyecto.plantilla[0]) {
+            nuevoProyecto.cambiaCoordinador(this);
             return true;
         } else {
             return false;
@@ -75,10 +76,11 @@ class Coordinador extends Estudiante {
 }
 
 class Proyecto {
-    constructor (codigo = "A892ER", maxEstudiantes = 2, costeHora = 10.5) {
+    constructor (codigo = "A892ER", maxEstudiantes = 2, costeHora = 10.5, variosCoordinadores = false) {
         this.codigo = codigo;
         this.horas = 0;
         this.maxEstudiantes = maxEstudiantes;
+        this.variosCoordinadores = variosCoordinadores;
         this.plantilla = [];
         if (typeof costeHora !== "number") {
             this.costeHora = 10.5;
@@ -162,7 +164,8 @@ class Proyecto {
     }
 
     cambiaCoordinador (coordinador) {
-        this.plantilla[0].proyecto = null;
+        this.plantilla[0].proyecto = coordinador.proyecto;
+        coordinador.proyecto.plantilla[0] = this.plantilla[0]
         this.plantilla[0] = coordinador;
         coordinador.asigna(this);        
     }

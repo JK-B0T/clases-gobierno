@@ -33,12 +33,11 @@ article section {
     background-color: antiquewhite;
     cursor: grab;
 }
-/*.estudiante *:not(button) {
-    pointer-events: none;
+
+.proyecto:not(aside) {
+    padding: 0 16px 16px 16px;
+    border: none
 }
-.estudiante *:not(button) {
-    pointer-events: none;
-}*/
 
 .tipoEstudiante {
     position: relative;

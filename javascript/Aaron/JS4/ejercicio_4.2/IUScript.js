@@ -3,7 +3,7 @@ window.addEventListener("DOMContentLoaded", start, false)
 function start() {
 
     let listaProyectos = {
-        "bandeja": new Proyecto("bandeja", 100, 0),
+        "bandeja": new Proyecto("bandeja", 100, 0, true),
     }
 
     let listaEstudiantes = {
@@ -91,7 +91,6 @@ function start() {
 
                 if (dropZone.classList.contains("proyecto")) {
                     newDropZone = dropZone.querySelector("section");
-                    console.log(newDropZone.tagName)
                     newProject = listaProyectos[newDropZone.getAttribute("id")];
                 } else if (dropZone.classList.contains("estudiante")) {
                     newDropZone = dropZone.parentNode;
@@ -102,16 +101,19 @@ function start() {
                     if (oldProject.plantilla.length > 1 && oldProject.getCodigo() !== "bandeja") {
                         for (estudiante of oldProject.plantilla) {
                             estudiante.cambiaProyecto(listaProyectos["bandeja"]);
-                            document.getElementById("bandeja").append(document.getElementById(estudiante.getNombre()));
+                            listaProyectos["bandeja"].append(document.getElementById(estudiante.getNombre()));
                         }
                     } else {
-                        console.log(newDropZone.tagName)
-                        newProject.incluye(oldProject.plantilla[0]);
+                        listaEstudiantes[draggable.getAttribute("id")].cambiaProyecto(newProject);
                         newDropZone.prepend(draggable);
                     }
                 }
-                dropZone.querySelector("section").prepend(draggable);
-                dropZone.parentNode.prepend(draggable);
+                console.log("bandeja: " + listaProyectos["bandeja"].getPlantilla(),
+                            "\nEEE555: " + listaProyectos["EEE555"].getPlantilla(),
+                            "\nDDD444: " + listaProyectos["DDD444"].getPlantilla(),
+                            "\nCCC333: " + listaProyectos["CCC333"].getPlantilla(),
+                            "\nBBB222: " + listaProyectos["BBB222"].getPlantilla(),
+                            "\nAAA111: " + listaProyectos["AAA111"].getPlantilla());
                 e.stopPropagation();
             } else {
                 //Si no hay coordinador, no se hace nada
@@ -315,6 +317,13 @@ function start() {
     crearEstudiante({nombre: "3C"});
     crearEstudiante({nombre: "2B"});
     crearCoordinador({nombre: "1A", especialidad: "binbo"});
+
+    console.log("bandeja: " + listaProyectos["bandeja"].getPlantilla(),
+                "\nEEE555: " + listaProyectos["EEE555"].getPlantilla(),
+                "\nDDD444: " + listaProyectos["DDD444"].getPlantilla(),
+                "\nCCC333: " + listaProyectos["CCC333"].getPlantilla(),
+                "\nBBB222: " + listaProyectos["BBB222"].getPlantilla(),
+                "\nAAA111: " + listaProyectos["AAA111"].getPlantilla());
 
     /*
     renderizarEstudiante("EEE555", cor, 0);

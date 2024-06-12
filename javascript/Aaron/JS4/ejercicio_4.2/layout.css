@@ -37,9 +37,10 @@ aside {
 }
 
 main.verticalFlexContainer {
-    padding: 16px;
+    padding-top: 16px;
     flex: none;
     overflow: scroll;
+    gap: 0pc;
 }
 
 .closeBtn {
