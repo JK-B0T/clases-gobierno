@@ -57,6 +57,7 @@ class Coordinador extends Estudiante {
 
     cambiaProyecto (nuevoProyecto) {
         if (nuevoProyecto.variosCoordinadores || !nuevoProyecto.plantilla[0]) {
+            this.proyecto.elimina(this.getNombre());
             this.proyecto = nuevoProyecto;
             nuevoProyecto.plantilla.unshift(this);
             return true;
@@ -76,11 +77,12 @@ class Coordinador extends Estudiante {
 }
 
 class Proyecto {
-    constructor (codigo = "A892ER", maxEstudiantes = 2, costeHora = 10.5, variosCoordinadores = false) {
+    constructor (codigo = "A892ER", maxEstudiantes = 2, costeHora = 10.5, variosCoordinadores = false, necesitaCoordinador = true) {
         this.codigo = codigo;
         this.horas = 0;
         this.maxEstudiantes = maxEstudiantes;
         this.variosCoordinadores = variosCoordinadores;
+        this.necesitaCoordinador = necesitaCoordinador;
         this.plantilla = [];
         if (typeof costeHora !== "number") {
             this.costeHora = 10.5;
@@ -92,7 +94,7 @@ class Proyecto {
     incluye (estudiante) {
         if (this.plantilla.length >= this.maxEstudiantes || this.plantilla.includes(estudiante)) {
             return false;
-        } else if (this.plantilla.length === 0){
+        } else if (this.plantilla.length === 0 && this.necesitaCoordinador === true){
             if(estudiante instanceof Coordinador) {
                 this.plantilla.push(estudiante);
                 estudiante.asigna(this);
@@ -135,7 +137,7 @@ class Proyecto {
     elimina (nombre) {
         this.plantilla.map((estudiante, index) => {
             nombre = nombre.toLowerCase();
-            if (estudiante.getNombre().toLowerCase() === nombre && !(estudiante instanceof Coordinador)) {
+            if (estudiante.getNombre().toLowerCase() === nombre) {
                 estudiante.proyecto = null;
                 this.plantilla.splice(index,1);
                 return true;
