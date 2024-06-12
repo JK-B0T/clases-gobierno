@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="gridLayout">
-        <dialog id="nuevoCoordinador">
+        <dialog id="nuevoCoordinador" class="ventanaCreacion">
             <form>
                 <button class="ocuppyAll closeDialogBtn" type="button">X</button>
                 <span class="ocuppyAll">Nuevo Coordinador</span>
@@ -26,7 +26,7 @@
             </form>
         </dialog>
 
-        <dialog id="nuevoEstudiante">
+        <dialog id="nuevoEstudiante" class="ventanaCreacion">
             <form>
                 <button class="ocuppyAll closeDialogBtn" type="button">X</button>
                 <span class="ocuppyAll">Nuevo Estudiante</span>
@@ -38,7 +38,7 @@
             </form>
         </dialog>
 
-        <dialog id="nuevoProyecto">
+        <dialog id="nuevoProyecto" class="ventanaCreacion">
             <form>
                 <button class="ocuppyAll closeDialogBtn" type="button">X</button>
                 <span class="ocuppyAll">Nuevo Proyecto</span>
@@ -54,6 +54,22 @@
     
                 <button class="ocuppyAll" type="submit">Crear Proyecto</button>
             </form>
+        </dialog>
+
+        <dialog id="ventanaHoras" class="ventanaAlerta">
+            <form>
+                <button class="closeDialogBtn ocuppyAll" type="button">X</button>
+                <span class="mensaje ocuppyAll">Introduce las horas trabajadas</span>
+                <Input class="aceptarBtn ocuppyAll"></Input>
+                <button type="button" class="cancelarBtn">Aceptar</button>
+                <button type="button" class="cancelarBtn">Cancelar</button>
+            </form>
+        </dialog>
+
+        <dialog id="ventanaAceptar" class="ventanaAlerta">
+            <span class="mensaje ocuppyAll">¿Seguro que quieres eliminar este proyecto? Los estudiantes se moveran a la bandeja</span>
+            <button type="button" class="aceptarBtn">Aceptar</button>
+            <button type="button" class="cancelarBtn">Cancelar</button>
         </dialog>
 
         <header class="verticalFlexContainer">

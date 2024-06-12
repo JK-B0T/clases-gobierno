@@ -13,7 +13,9 @@ function start() {
     const dialogList = [
         document.getElementById("nuevoCoordinador"),
         document.getElementById("nuevoEstudiante"),
-        document.getElementById("nuevoProyecto")
+        document.getElementById("nuevoProyecto"),
+        document.getElementById("ventanaHoras"),
+        document.getElementById("ventanaAceptar"),
     ];
     const closeBtnList = Array.from(document.querySelectorAll(".closeDialogBtn"));
     closeBtnList.forEach((btn, index) => btn.addEventListener("click", () => dialogList[index].close()));
@@ -21,14 +23,17 @@ function start() {
     const modalBtnList = [
         document.getElementById("btnNuevoCoordinador"),
         document.getElementById("btnNuevoEstudiante"),
-        document.getElementById("btnNuevoProyecto")
+        document.getElementById("btnNuevoProyecto"),
+        document.getElementById("ventanaHoras"),
+        document.getElementById("ventanaAceptar"),
     ];
     modalBtnList.forEach((btn, index) => btn.addEventListener("click", () => dialogList[index].showModal()));
 
     const formList = [
         document.getElementById("nuevoCoordinador").firstElementChild,
         document.getElementById("nuevoEstudiante").firstElementChild,
-        document.getElementById("nuevoProyecto").firstElementChild
+        document.getElementById("nuevoProyecto").firstElementChild,
+        document.getElementById("ventanaHoras").firstElementChild,
     ];
     formList.forEach((form) => form.addEventListener("submit", onFormSubmit));
 
@@ -130,9 +135,13 @@ function start() {
 
     function sumarHoras() {
         console.log("Horas añadidas");
-    }
+    } 
 
     function eliminarRenderizado(elemento) {
+        elemento.parentNode.removeChild(elemento);
+    }
+
+    function mostrarVentana(ventana) {
         elemento.parentNode.removeChild(elemento);
     }
 

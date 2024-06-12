@@ -106,6 +106,12 @@ article header:active,
     background-color: rgb(129, 104, 255, 1);
 }
 
+aside .estudiante .btnSumarHoras{
+    background-color: rgb(153, 152, 159);
+    border: 2px solid rgb(135, 92, 92);
+    pointer-events: none;
+}
+
 .estudiante:hover .btnSumarHoras,
 .estudiante:hover .btnElminarEstudiante{
     opacity: 1;
