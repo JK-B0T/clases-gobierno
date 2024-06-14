@@ -51,6 +51,7 @@ dialog {
     margin: 35vh auto;
 }
 .ventanaAlerta,
+.ventanaAlerta div
 .ventanaCreacion form * {
     font-size: 1.2rem;
 }
@@ -77,15 +78,17 @@ dialog {
     grid-template: repeat(6, 1fr) / 1fr 1fr;
 }
 
-#ventanaAceptar{
+#ventanaAceptar div{
     display: grid;
     grid-template: 1fr 1fr / 1fr 1fr;
     text-align: center;
-    margin: 110px;
 }
 
 #ventanaHoras form{
     display: grid;
     grid-template: repeat(3, 1fr) / 1fr 1fr;
+    text-align: center;
+}
+#ventanaHoras input {
     text-align: center;
 }

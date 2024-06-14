@@ -2,6 +2,11 @@ window.addEventListener("DOMContentLoaded", start, false)
 
 function start() {
 
+    let horasTrabajadas;
+    let horasInvertidas;
+    let modo;
+    let elementoAEliminar;
+
     let listaProyectos = {
         "bandeja": new Proyecto("bandeja", 100, 0, true, false),
     }
@@ -24,8 +29,8 @@ function start() {
         document.getElementById("btnNuevoCoordinador"),
         document.getElementById("btnNuevoEstudiante"),
         document.getElementById("btnNuevoProyecto"),
-        document.getElementById("ventanaHoras"),
-        document.getElementById("ventanaAceptar"),
+        //document.getElementById("sumarBtn"),
+        //document.getElementById("aceptarBtn"),
     ];
     modalBtnList.forEach((btn, index) => btn.addEventListener("click", () => dialogList[index].showModal()));
 
@@ -35,7 +40,7 @@ function start() {
         document.getElementById("nuevoProyecto").firstElementChild,
         document.getElementById("ventanaHoras").firstElementChild,
     ];
-    formList.forEach((form) => form.addEventListener("submit", onFormSubmit));
+    formList.forEach((form) => form.addEventListener("submit", onFormSubmit, false));
 
     function onFormSubmit(e) {
         e.preventDefault();
@@ -46,8 +51,10 @@ function start() {
             crearProyecto(objData);
         } else if (objData.hasOwnProperty("especialidad")) {
             crearCoordinador(objData);
-        } else {
+        } else if (objData.hasOwnProperty("nombre")){
             crearEstudiante(objData);
+        }else {
+            sumarHoras(objData);
         }
     }
 
@@ -55,19 +62,22 @@ function start() {
         const estudiante = new Estudiante(data.nombre);
         listaProyectos.bandeja.incluye(estudiante);
         listaEstudiantes[data.nombre] = estudiante;
-        renderizarEstudiante(listaProyectos.bandeja.codigo, estudiante, 0)
+        renderizarEstudiante(listaProyectos.bandeja.codigo, estudiante, 0);
+        dialogList[1].close();
     }
 
     function crearCoordinador(data) {
         const coordinador = new Coordinador(data.nombre, data.especialidad);
         listaProyectos.bandeja.incluye(coordinador);
         listaEstudiantes[data.nombre] = coordinador;
-        renderizarEstudiante(listaProyectos.bandeja.codigo, coordinador, 0)
+        renderizarEstudiante(listaProyectos.bandeja.codigo, coordinador, 0);
+        dialogList[0].close();
     }
 
     function crearProyecto(data) {
         listaProyectos[data.codigo] = new Proyecto(data.codigo, data.maxEstudiantes, data.costeHora);
         renderizarProyecto(listaProyectos[data.codigo], 0);
+        dialogList[2].close();
     }
 
     function comprobar (e) {
@@ -133,16 +143,95 @@ function start() {
         }
     }
 
-    function sumarHoras() {
-        console.log("Horas añadidas");
+    function abrirSumarHoras(e) {
+        dialogList[3].showModal();
+
+        horasTrabajadas = e.target.parentNode.querySelector(".horasTrabajadas");
+        if (e.target.parentNode.parentNode.getAttribute("id") === "bandeja") {
+            horasInvertidas = null
+        } else {
+            horasInvertidas = e.target.parentNode.parentNode.parentNode.querySelector(".horasInvertidas");
+        }
     } 
 
-    function eliminarRenderizado(elemento) {
-        elemento.parentNode.removeChild(elemento);
+    function sumarHoras(data) {
+        const nuevasHorasTrabajadas = +horasTrabajadas.textContent + +data.horasTrabajadas;
+        const nuevasHorasInvertidas = +horasInvertidas.textContent.match(/\d/g).join("") + +data.horasTrabajadas;
+
+        horasTrabajadas.textContent = nuevasHorasTrabajadas;
+        horasInvertidas.textContent = nuevasHorasInvertidas;
+        dialogList[3].close();
+    } 
+
+    function eliminarRenderizado() {
+        if (modo === 1) {
+            if (elementoAEliminar.tagName === "ARTICLE") {
+                delete listaProyectos[listaProyectos[elementoAEliminar.querySelector("section").getAttribute("id")]];
+            } else {
+                const proyecto = listaProyectos[elementoAEliminar.parentNode.getAttribute("id")];
+                delete listaEstudiantes[listaEstudiantes[elementoAEliminar.getAttribute("id")]];
+                proyecto.elimina(elementoAEliminar.getAttribute("id"));
+            }
+            elementoAEliminar.parentNode.removeChild(elementoAEliminar);
+        } else if (modo === 2) {
+            const proyecto = listaProyectos[elementoAEliminar.querySelector("section").getAttribute("id")];
+            const bandeja = document.querySelector("#bandeja");
+
+            for (let i = proyecto.plantilla.length-1; i >= 0 ; i--) {
+                if (proyecto.plantilla[i] instanceof Coordinador) {
+                    bandeja.prepend(document.getElementById(proyecto.plantilla[i].getNombre()));
+                } else {
+                    bandeja.append(document.getElementById(proyecto.plantilla[i].getNombre()));
+                }
+                proyecto.plantilla[i].cambiaProyecto(listaProyectos["bandeja"]);
+            }
+            delete listaProyectos[proyecto.getCodigo()];
+            elementoAEliminar.parentNode.removeChild(elementoAEliminar);
+        } else if (modo === 3) {
+            const proyecto = listaProyectos[elementoAEliminar.parentNode.getAttribute("id")];
+            const bandeja = document.querySelector("#bandeja");
+
+            for (let i = proyecto.plantilla.length-1; i >= 1 ; i--) {
+                if (proyecto.plantilla[i] instanceof Coordinador) {
+                    bandeja.prepend(document.getElementById(proyecto.plantilla[i].getNombre()));
+                } else {
+                    bandeja.append(document.getElementById(proyecto.plantilla[i].getNombre()));
+                }
+                proyecto.plantilla[i].cambiaProyecto(listaProyectos["bandeja"]);
+            }
+            proyecto.elimina(elementoAEliminar.getAttribute("id"));
+            delete listaEstudiantes[elementoAEliminar.getAttribute("id")];
+            elementoAEliminar.parentNode.removeChild(elementoAEliminar);
+        }
+        
+        dialogList[4].close();
     }
 
-    function mostrarVentana(ventana) {
-        elemento.parentNode.removeChild(elemento);
+    function mostrarVentana(elemento) {
+        const mensaje = document.querySelector(".mensaje");
+        elementoAEliminar = elemento;
+        
+        if (elemento.tagName === "ARTICLE") {
+            if (elemento.querySelector("section").hasChildNodes()) {
+                mensaje.textContent = "¿Seguro que quieres eliminar este proyecto? Sus estudiantes se moveran a la bandeja";
+                modo = 2;
+            } else {
+                mensaje.textContent = "¿Seguro que quieres eliminar este proyecto?";
+                modo = 1;
+            }
+        } else if (listaEstudiantes[elemento.getAttribute("id")] instanceof Coordinador) {
+            if (elemento.parentNode.getAttribute("id") !== "bandeja" && elemento.nextSibling) {
+                mensaje.textContent = "¿Seguro que quieres eliminar este coordinador? Los estudiantes se moveran a la bandeja";
+                modo = 3;
+            } else {
+                mensaje.textContent = "¿Seguro que quieres eliminar a este coordinador?";
+                modo = 1;
+            } 
+        } else {
+            mensaje.textContent = "¿Seguro que quieres eliminar a este estudiante?";
+            modo = 1;
+        }
+        dialogList[4].showModal();
     }
 
     function renderizarEstudiante(nombreTabla = "bandeja", estudiante, indice) {
@@ -184,14 +273,14 @@ function start() {
         btn1.setAttribute("type", "button")
         btn1.classList.add("btnElminarEstudiante");
         btn1.textContent = "X";
-        btn1.addEventListener("click", () => eliminarRenderizado(div), false)
+        btn1.addEventListener("click", () => mostrarVentana(div), false)
         div.appendChild(btn1);
 
         const btn2 = document.createElement("button");
         btn2.setAttribute("type", "button")
         btn2.classList.add("btnSumarHoras");
         btn2.textContent = "+";
-        btn2.addEventListener("click", sumarHoras, false)
+        btn2.addEventListener("click", (e) => abrirSumarHoras(e), false)
                 //Aparece mensaje con input aparece, al aceptarse se añaden las horas puestas en el al estudiante e interfaz
         div.appendChild(btn2);
 
@@ -236,7 +325,7 @@ function start() {
         btn1.setAttribute("type", "button")
         btn1.classList.add("closeBtn");
         btn1.textContent = "X";
-        btn1.addEventListener("click", () => eliminarRenderizado(article), false)
+        btn1.addEventListener("click", () => mostrarVentana(article), false)
         //Aparece mensaje de aviso, si se acepta se elimina proyecto y estudiantes vuelven a la bandeja
         header.appendChild(btn1);
 
@@ -250,13 +339,11 @@ function start() {
         }
     }
 
+    document.querySelector("#aceptarBtn").addEventListener("click", eliminarRenderizado, false);
     document.querySelector("main").addEventListener("drop", (e) => {comprobar(e);}, false);
     document.querySelector("main").addEventListener("dragover", (e) => {e.preventDefault()}, false);
     document.querySelector("aside").addEventListener("drop", (e) => {comprobar(e);}, false);
     document.querySelector("aside").addEventListener("dragover", (e) => {e.preventDefault()}, false);
-
-    const est = new Estudiante("Pepo");
-    const cor = new Coordinador("Coco", "Cocotero");
 
     crearProyecto({codigo: "AAA111", maxEstudiantes: 1, costeHora: 11});
     crearProyecto({codigo: "BBB222", maxEstudiantes: 2, costeHora: 12});
@@ -285,6 +372,9 @@ function start() {
                 "\nAAA111: " + listaProyectos["AAA111"].getPlantilla());
 
     /*
+    const est = new Estudiante("Pepo");
+    const cor = new Coordinador("Coco", "Cocotero");
+
     renderizarEstudiante("EEE555", cor, 0);
     renderizarEstudiante("EEE555", est, 1);
     renderizarEstudiante("EEE555", est, 2);

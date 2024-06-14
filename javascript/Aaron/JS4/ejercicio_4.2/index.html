@@ -17,10 +17,10 @@
                 <span class="ocuppyAll">Nuevo Coordinador</span>
 
                 <label for="nombre">Nombre</label>
-                <input id="nombre" name="nombre"></input>
+                <input id="nombre" name="nombre" required>
 
                 <label for="especialidad">Especialidad</label>
-                <input id="especialidad" name="especialidad"></input>
+                <input id="especialidad" name="especialidad">
     
                 <button class="ocuppyAll" type="submit">Crear Coordinador</button>
             </form>
@@ -32,7 +32,7 @@
                 <span class="ocuppyAll">Nuevo Estudiante</span>
 
                 <label for="nombre">Nombre</label>
-                <input id="nombre" name="nombre"></input>
+                <input id="nombre" name="nombre" required>
     
                 <button class="ocuppyAll" type="submit">Crear Estudiante</button>
             </form>
@@ -44,13 +44,13 @@
                 <span class="ocuppyAll">Nuevo Proyecto</span>
 
                 <label for="codigo">Codigo</label>
-                <input id="codigo" name="codigo"></input>
+                <input id="codigo" name="codigo" required>
 
                 <label for="maxEstudiantes">Estudiantes máximos</label>
-                <input id="maxEstudiantes" name="maxEstudiantes"></input>
+                <input id="maxEstudiantes" name="maxEstudiantes">
 
                 <label for="costeHora">Coste por hora</label>
-                <input id="costeHora" name="costeHora"></input>
+                <input id="costeHora" name="costeHora">
     
                 <button class="ocuppyAll" type="submit">Crear Proyecto</button>
             </form>
@@ -59,17 +59,18 @@
         <dialog id="ventanaHoras" class="ventanaAlerta">
             <form>
                 <button class="closeDialogBtn ocuppyAll" type="button">X</button>
-                <span class="mensaje ocuppyAll">Introduce las horas trabajadas</span>
-                <Input class="aceptarBtn ocuppyAll"></Input>
-                <button type="button" class="cancelarBtn">Aceptar</button>
-                <button type="button" class="cancelarBtn">Cancelar</button>
+                <span class="ocuppyAll">Introduce las horas trabajadas</span>
+                <Input class="aceptarBtn ocuppyAll" name="horasTrabajadas" required>
+                <button type="submit" id="sumarBtn" class="ocuppyAll">Aceptar</button>
             </form>
         </dialog>
 
         <dialog id="ventanaAceptar" class="ventanaAlerta">
-            <span class="mensaje ocuppyAll">¿Seguro que quieres eliminar este proyecto? Los estudiantes se moveran a la bandeja</span>
-            <button type="button" class="aceptarBtn">Aceptar</button>
-            <button type="button" class="cancelarBtn">Cancelar</button>
+            <div>
+                <span class="mensaje ocuppyAll">¿Seguro que quieres eliminar este proyecto? Los estudiantes se moveran a la bandeja</span>
+                <button type="button" id="aceptarBtn">Aceptar</button>
+                <button type="button" class="closeDialogBtn">Cancelar</button>
+            </div>
         </dialog>
 
         <header class="verticalFlexContainer">
